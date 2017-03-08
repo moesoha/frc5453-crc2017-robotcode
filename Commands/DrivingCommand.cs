@@ -8,28 +8,24 @@ using WPILib.Commands;
 namespace FRC2017c.Commands{
 	public class DrivingCommand:Command{
 		public DrivingCommand(){
-			
+			Requires(FRC2017c.driveSys);
 		}
-
-		// Called just before this Command runs the first time
-		protected override void Initialize()
-		{
+		
+		protected override void Initialize(){
+			System.Console.WriteLine("DrivingCommand Initialized.");
 		}
 
 		// Called repeatedly when this Command is scheduled to run
-		protected override void Execute()
-		{
+		protected override void Execute(){
+			
 		}
 
-		// Make this return true when this Command no longer needs to run Execute()
-		protected override bool IsFinished()
-		{
+		protected override bool IsFinished(){
 			return false;
 		}
-
-		// Called once after isFinished returns true
-		protected override void End()
-		{
+		
+		protected override void End(){
+			System.Console.WriteLine("DrivingCommand is finished.");
 		}
 
 		// Called when another command which requires one or more of the same
