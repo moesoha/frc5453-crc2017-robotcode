@@ -12,7 +12,7 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Initialize(){
-
+			System.Console.WriteLine("AutonomousCommand Initialized.");
 		}
 
 		protected override void Execute(){
@@ -24,11 +24,11 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void End(){
-
+			System.Console.WriteLine("AutonomousCommand is finished.");
 		}
 		
 		protected override void Interrupted(){
-
+			System.Console.WriteLine("AutonomousCommand is interrupted.");
 		}
 	}
 }
