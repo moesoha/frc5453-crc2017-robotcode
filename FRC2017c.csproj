@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RobotProject="yes" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D2446139-1B5E-4753-B7F6-D165989196AD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FRC2017c</RootNamespace>
+    <AssemblyName>FRC2017c</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FRC2017c.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FRC.CameraServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.CameraServer.1.0.0\lib\net45\FRC.CameraServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FRC.NetworkTables.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.NetworkTables.Core.3.1.6\lib\net45\FRC.NetworkTables.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FRC.OpenCvSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.OpenCvSharp.1.0.0\lib\net45\FRC.OpenCvSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HAL, Version=2017.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.Extras.2017.0.1\lib\net451\HAL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NativeLibraryUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NativeLibraryUtilities.1.0.0\lib\net45\NativeLibraryUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WPILib, Version=2017.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.2017.0.1\lib\net451\WPILib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WPILib.Extras, Version=2017.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.Extras.2017.0.1\lib\net451\WPILib.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="FRC2017c.cs" />
+    <Compile Include="OI.cs" />
+    <Compile Include="RobotMap.cs" />
+    <Compile Include="Subsystems\ExampleSubsystem.cs" />
+    <Compile Include="Commands\ExampleCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Triggers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="wpinative\libcscore.so" />
+    <None Include="wpinative\libHALAthena.so" />
+    <None Include="wpinative\libntcore.so" />
+    <None Include="wpinative\libOpenCvSharpExtern.so" />
+    <None Include="wpinative\libopencv_calib3d.so.3.1" />
+    <None Include="wpinative\libopencv_core.so.3.1" />
+    <None Include="wpinative\libopencv_features2d.so.3.1" />
+    <None Include="wpinative\libopencv_flann.so.3.1" />
+    <None Include="wpinative\libopencv_highgui.so.3.1" />
+    <None Include="wpinative\libopencv_imgcodecs.so.3.1" />
+    <None Include="wpinative\libopencv_imgproc.so.3.1" />
+    <None Include="wpinative\libopencv_ml.so.3.1" />
+    <None Include="wpinative\libopencv_objdetect.so.3.1" />
+    <None Include="wpinative\libopencv_photo.so.3.1" />
+    <None Include="wpinative\libopencv_shape.so.3.1" />
+    <None Include="wpinative\libopencv_stitching.so.3.1" />
+    <None Include="wpinative\libopencv_superres.so.3.1" />
+    <None Include="wpinative\libopencv_video.so.3.1" />
+    <None Include="wpinative\libopencv_videoio.so.3.1" />
+    <None Include="wpinative\libopencv_videostab.so.3.1" />
+    <None Include="wpinative\libwpiutil.so" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
