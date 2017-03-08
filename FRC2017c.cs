@@ -13,14 +13,14 @@ namespace FRC2017c{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static OI oi;
-		Command autonomousCommand;
+		Command autoCmd;
 		SendableChooser chooser;
 
 		public override void RobotInit(){
 			oi=new OI();
-			autonomousCommand=new ExampleCommand();
+			autoCmd=new AutonomousCommand();
 			chooser=new SendableChooser();
-			chooser.AddDefault("Default Auto",new ExampleCommand());
+			chooser.AddDefault("Default Auto",new AutonomousCommand());
 			SmartDashboard.PutData("Chooser",chooser);
 		}
 
@@ -29,7 +29,7 @@ namespace FRC2017c{
 		}
 
 		public override void AutonomousInit(){
-			autonomousCommand=(Command)chooser.GetSelected();
+			autoCmd=(Command)chooser.GetSelected();
 
 			/*
             string autoSelected = SmartDashboard.GetString("Auto Selector", "Default");
@@ -45,7 +45,7 @@ namespace FRC2017c{
             }
             */
 			// schedule the autonomous command (example)
-			if(autonomousCommand!=null)autonomousCommand.Start();
+			if(autoCmd!=null)autoCmd.Start();
 		}
 
 		public override void AutonomousPeriodic(){
@@ -53,7 +53,7 @@ namespace FRC2017c{
 		}
 
 		public override void TeleopInit(){
-			if(autonomousCommand!=null)autonomousCommand.Cancel();
+			if(autoCmd!=null)autoCmd.Cancel();
 		}
 		
 		public override void DisabledInit(){
