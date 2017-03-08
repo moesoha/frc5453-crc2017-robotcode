@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Commands\AutonomousCommand.cs" />
     <Compile Include="Commands\DrivingCommand.cs" />
+    <Compile Include="Commands\NavCommand.cs" />
     <Compile Include="Commands\OperatingCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FRC2017c.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="RobotMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subsystems\DrivingSubsystem.cs" />
+    <Compile Include="Subsystems\NavSubsystem.cs" />
     <Compile Include="Subsystems\OperatingSubsystem.cs" />
   </ItemGroup>
   <ItemGroup>
