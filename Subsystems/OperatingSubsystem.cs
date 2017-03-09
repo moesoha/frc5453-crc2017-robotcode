@@ -24,7 +24,7 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public OperatingSubsystem(){
-			bindMotors();
+
 		}
 
 		protected override void InitDefaultCommand(){

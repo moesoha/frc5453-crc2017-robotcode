@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using WPILib;
 using WPILib.Commands;
+using FRC2017c;
 
 namespace FRC2017c.Commands{
 	public class AutonomousCommand:Command{
 		public AutonomousCommand(){
-			Requires(FRC2017c.driveSys);
+
 		}
 
 		protected override void Initialize(){

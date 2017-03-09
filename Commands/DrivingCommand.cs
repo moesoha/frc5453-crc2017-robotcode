@@ -15,7 +15,6 @@ namespace FRC2017c.Commands{
 		
 		protected override void Initialize(){
 			System.Console.WriteLine("DrivingCommand Initialized.");
-			FRC2017c.driveSys.bindMotors();
 		}
 
 		// Called repeatedly when this Command is scheduled to run

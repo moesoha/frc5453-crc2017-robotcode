@@ -32,7 +32,6 @@ namespace FRC2017c.Subsystems{
 
 		public DrivingSubsystem(){
 			System.Console.WriteLine("Init driving subsystem.");
-			bindMotors();
 		}
 
 		protected override void InitDefaultCommand(){
