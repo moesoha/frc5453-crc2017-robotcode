@@ -14,15 +14,23 @@ namespace FRC2017c.Subsystems{
 		VictorSP motorBallShoot;
 		VictorSP motorRobotClimb;
 
+		public void bindMotors(){
+			motorBallReady=new VictorSP(RobotMap.motorBallReady);
+			motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
+			motorRobotClimb=new VictorSP(RobotMap.motorRobotClimb);
+			motorBallReady.SafetyEnabled=false;
+			motorBallShoot.SafetyEnabled=false;
+			motorRobotClimb.SafetyEnabled=false;
+		}
+
 		public OperatingSubsystem(){
+			bindMotors();
 		}
 
 		protected override void InitDefaultCommand(){
 			SetDefaultCommand(new OperatingCommand());
 			System.Console.WriteLine("Init operating subsystem.");
-			motorBallReady=new VictorSP(RobotMap.motorBallReady);
-			motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
-			motorRobotClimb=new VictorSP(RobotMap.motorRobotClimb);
+			bindMotors();
 		}
 
 		public void resetMotors(){

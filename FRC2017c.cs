@@ -13,7 +13,6 @@ namespace FRC2017c{
 	public class FRC2017c:IterativeRobot{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
-		public static readonly NavSubsystem navSys=new NavSubsystem();
 		public static OI oi;
 		SendableChooser chooser;
 		// init usb camera and mjpegServer

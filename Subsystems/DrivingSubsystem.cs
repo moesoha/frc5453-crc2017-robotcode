@@ -18,17 +18,16 @@ namespace FRC2017c.Subsystems{
 		RobotDrive drive;
 
 		public void bindMotors(){
-			motorFrontLeft.SafetyEnabled=false;
-			motorFrontRight.SafetyEnabled=false;
-			motorRearLeft.SafetyEnabled=false;
-			motorRearRight.SafetyEnabled=false;
 			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
 			motorFrontRight=new VictorSP(RobotMap.motorFrontRight);
 			motorRearLeft=new VictorSP(RobotMap.motorRearLeft);
 			motorRearRight=new VictorSP(RobotMap.motorRearRight);
-
-			drive.SafetyEnabled=false;
 			drive=new RobotDrive(motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight);
+			motorFrontLeft.SafetyEnabled=false;
+			motorFrontRight.SafetyEnabled=false;
+			motorRearLeft.SafetyEnabled=false;
+			motorRearRight.SafetyEnabled=false;
+			drive.SafetyEnabled=false;
 		}
 
 		public DrivingSubsystem(){
@@ -38,6 +37,7 @@ namespace FRC2017c.Subsystems{
 
 		protected override void InitDefaultCommand(){
 			SetDefaultCommand(new DrivingCommand());
+			bindMotors();
 		}
 
 		public void resetMotors(){

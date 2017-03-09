@@ -4,21 +4,18 @@ using System.Linq;
 using System.Text;
 using WPILib;
 using WPILib.Commands;
+using FRC2017c;
 
 namespace FRC2017c.Commands{
 	public class OperatingCommand:Command{
-		OI oi;
-
 		public OperatingCommand(){
 			Requires(FRC2017c.operateSys);
-			//Requires(FRC2017c.driveSys);
-			oi=new OI();
 		}
 		
 		private void doBallReady(){
-			if(oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")>0.02){
+			if(FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")>0.02){
 				FRC2017c.operateSys.readyBall(1,oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")*RobotMap.ballReadySpeedConstant);
-			}else if(oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")>0.02){
+			}else if(FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")>0.02){
 				FRC2017c.operateSys.readyBall(-1,oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")*RobotMap.ballReadySpeedConstant);
 			}else{
 				FRC2017c.operateSys.readyBall(-1,0.0);
@@ -26,7 +23,7 @@ namespace FRC2017c.Commands{
 		}
 
 		private void doBallShoot(){
-			if(oi.readButton(RobotMap.joystickDrivingBallShoot,"drive")){
+			if(FRC2017c.oi.readButton(RobotMap.joystickDrivingBallShoot,"drive")){
 				FRC2017c.operateSys.shootBall((double)(RobotMap.ballShootSpeedConstant*1.0));
 			}else{
 				FRC2017c.operateSys.shootBall(0.0);
@@ -34,7 +31,7 @@ namespace FRC2017c.Commands{
 		}
 
 		private void doRobotClimb(){
-			if(oi.readButton(RobotMap.joystickDrivingRobotClimb,"drive")){
+			if(FRC2017c.oi.readButton(RobotMap.joystickDrivingRobotClimb,"drive")){
 				FRC2017c.operateSys.robotClimb((double)(RobotMap.robotClimbSpeedConstant*1.0));
 			}else{
 				FRC2017c.operateSys.robotClimb(0.0);
@@ -42,7 +39,7 @@ namespace FRC2017c.Commands{
 		}
 
 		private void doMotorReset(){
-			if(oi.readButton(RobotMap.joystickDrivingStopAll,"drive")){
+			if(FRC2017c.oi.readButton(RobotMap.joystickDrivingStopAll,"drive")){
 				FRC2017c.operateSys.resetMotors();
 				FRC2017c.driveSys.resetMotors();
 			}
@@ -65,10 +62,12 @@ namespace FRC2017c.Commands{
 		
 		protected override void End(){
 			System.Console.WriteLine("OperatingCommand is finished.");
+			FRC2017c.operateSys.resetMotors();
 		}
 
 		protected override void Interrupted(){
 			System.Console.WriteLine("OperatingCommand is interrupted.");
+			End();
 		}
 	}
 }
