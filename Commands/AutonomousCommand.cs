@@ -16,11 +16,11 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
-
+			FRC2017c.driveSys.arcadeDrive(0.8,0,true);
 		}
 
 		protected override bool IsFinished(){
-			return false;
+			return true;
 		}
 		
 		protected override void End(){

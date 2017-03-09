@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using WPILib;
 using WPILib.Commands;
+using FRC2017c;
+using FRC2017c.Commands;
 
 namespace FRC2017c.Subsystems{
 	public class DrivingSubsystem:Subsystem{
@@ -16,17 +18,17 @@ namespace FRC2017c.Subsystems{
 		RobotDrive drive;
 
 		public DrivingSubsystem(){
+			System.Console.WriteLine("Init driving subsystem.");
+		}
+
+		protected override void InitDefaultCommand(){
+			SetDefaultCommand(new DrivingCommand());
 			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
 			motorFrontRight=new VictorSP(RobotMap.motorFrontRight);
 			motorRearLeft=new VictorSP(RobotMap.motorRearLeft);
 			motorRearRight=new VictorSP(RobotMap.motorRearRight);
 
 			drive=new RobotDrive(motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight);
-		}
-
-		protected override void InitDefaultCommand(){
-			// Set the default command for a subsystem here.
-			//SetDefaultCommand(new MySpecialCommand());
 		}
 
 		public void resetMotors(){

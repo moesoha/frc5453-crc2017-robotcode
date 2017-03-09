@@ -5,26 +5,35 @@ using System.Text;
 using WPILib;
 using WPILib.Commands;
 using WPILib.Extras.NavX;
+using FRC2017c;
+using FRC2017c.Commands;
 
 namespace FRC2017c.Subsystems{
 	public class NavSubsystem:Subsystem{
+		AHRS ahrs;
 		AHRS.BoardYawAxis ahrsBoardYawAxis;
 		AHRS.BoardAxis ahrsAxes;
 		Array axes;
 		double x,y,z;
 
-		protected override void InitDefaultCommand(){
-			
+		public NavSubsystem(){
+			System.Console.WriteLine("Init nav subsystem.");
+			try{
+				ahrs=new AHRS(SPI.Port.MXP);
+			}catch(InvalidCastException err){
+				System.Console.WriteLine(err.ToString());
+				DriverStation.ReportError("navX Error: "+err.Message,true);
+			}
 		}
 
-		public void getBoardYawAxis(){
-			ahrsBoardYawAxis=new AHRS.BoardYawAxis();
-			ahrsAxes=ahrsBoardYawAxis.BoardAxis;
-			x=(double)AHRS.BoardAxis.KBoardAxisX;
-			y=(double)AHRS.BoardAxis.KBoardAxisY;
-			z=(double)AHRS.BoardAxis.KBoardAxisZ;
+		protected override void InitDefaultCommand(){
+			SetDefaultCommand(new NavCommand());
+		}
+
+		public void getAngel(){
 			
-			System.Console.WriteLine(x+" "+y+" "+z);
+			double angel=ahrs.GetAngle();
+			System.Console.Write("-"+angel+"-");
 		}
 	}
 }

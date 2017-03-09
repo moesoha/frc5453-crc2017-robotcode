@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using WPILib;
 using WPILib.Commands;
+using FRC2017c;
+using FRC2017c.Commands;
 
 namespace FRC2017c.Subsystems{
 	public class OperatingSubsystem:Subsystem{
@@ -13,14 +15,14 @@ namespace FRC2017c.Subsystems{
 		VictorSP motorRobotClimb;
 
 		public OperatingSubsystem(){
-			motorBallReady=new VictorSP(RobotMap.motorBallReady);
-			motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
-			motorRobotClimb=new VictorSP(RobotMap.motorRobotClimb);
 		}
 
 		protected override void InitDefaultCommand(){
-			// Set the default command for a subsystem here.
-			//SetDefaultCommand(new MySpecialCommand());
+			SetDefaultCommand(new OperatingCommand());
+			System.Console.WriteLine("Init operating subsystem.");
+			motorBallReady=new VictorSP(RobotMap.motorBallReady);
+			motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
+			motorRobotClimb=new VictorSP(RobotMap.motorRobotClimb);
 		}
 
 		public void resetMotors(){

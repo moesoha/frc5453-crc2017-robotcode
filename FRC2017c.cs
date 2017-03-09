@@ -15,20 +15,24 @@ namespace FRC2017c{
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static readonly NavSubsystem navSys=new NavSubsystem();
 		public static OI oi;
-		Command autoCmd;
+		Command autoCmd,navCmd,driveCmd,operateCmd;
 		SendableChooser chooser;
 		// init usb camera and mjpegServer
 		UsbCamera usbCamera;
 		MjpegServer mjpegServer;
 
 		public override void RobotInit(){
-			Console.WriteLine("Hello, FRC2017!");
-			Console.WriteLine("TrueMoe RobotCode 2017c");
+			System.Console.WriteLine("Hello, FRC2017!");
+			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
 			autoCmd=new AutonomousCommand();
+			navCmd=new NavCommand();
+			driveCmd=new DrivingCommand();
+			operateCmd=new OperatingCommand();
 			chooser=new SendableChooser();
 			chooser.AddDefault("Default Auto",new AutonomousCommand());
 			SmartDashboard.PutData("Chooser",chooser);
+			
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);

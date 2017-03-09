@@ -16,7 +16,7 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void Execute(){
-			FRC2017c.navSys.getBoardYawAxis();
+			FRC2017c.navSys.getAngel();
 		}
 
 		protected override bool IsFinished(){
