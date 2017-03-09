@@ -11,7 +11,7 @@ namespace FRC2017c.Commands{
 
 		public OperatingCommand(){
 			Requires(FRC2017c.operateSys);
-			Requires(FRC2017c.driveSys);
+			//Requires(FRC2017c.driveSys);
 			oi=new OI();
 		}
 		

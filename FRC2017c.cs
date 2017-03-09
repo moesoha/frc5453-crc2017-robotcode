@@ -15,7 +15,6 @@ namespace FRC2017c{
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static readonly NavSubsystem navSys=new NavSubsystem();
 		public static OI oi;
-		Command autoCmd,navCmd,driveCmd,operateCmd;
 		SendableChooser chooser;
 		// init usb camera and mjpegServer
 		UsbCamera usbCamera;
@@ -25,13 +24,7 @@ namespace FRC2017c{
 			System.Console.WriteLine("Hello, FRC2017!");
 			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
-			autoCmd=new AutonomousCommand();
-			navCmd=new NavCommand();
-			driveCmd=new DrivingCommand();
-			operateCmd=new OperatingCommand();
 			chooser=new SendableChooser();
-			chooser.AddDefault("Default Auto",new AutonomousCommand());
-			SmartDashboard.PutData("Chooser",chooser);
 			
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
@@ -44,23 +37,7 @@ namespace FRC2017c{
 		}
 
 		public override void AutonomousInit(){
-			autoCmd=(Command)chooser.GetSelected();
-
-			/*
-            string autoSelected = SmartDashboard.GetString("Auto Selector", "Default");
-            switch(autoSelected)
-            {
-            case "My Auto":
-                autonomousCommand = new MyAutoCommand();
-                break;
-            case "Default Auto"
-            default:
-                autonomousCommand = new ExampleCommand();
-                break;
-            }
-            */
-			// schedule the autonomous command (example)
-			if(autoCmd!=null)autoCmd.Start();
+			
 		}
 
 		public override void AutonomousPeriodic(){
@@ -68,7 +45,7 @@ namespace FRC2017c{
 		}
 
 		public override void TeleopInit(){
-			if(autoCmd!=null)autoCmd.Cancel();
+
 		}
 		
 		public override void DisabledInit(){

@@ -17,18 +17,27 @@ namespace FRC2017c.Subsystems{
 		// init RobotDrive
 		RobotDrive drive;
 
-		public DrivingSubsystem(){
-			System.Console.WriteLine("Init driving subsystem.");
-		}
-
-		protected override void InitDefaultCommand(){
-			SetDefaultCommand(new DrivingCommand());
+		public void bindMotors(){
+			motorFrontLeft.SafetyEnabled=false;
+			motorFrontRight.SafetyEnabled=false;
+			motorRearLeft.SafetyEnabled=false;
+			motorRearRight.SafetyEnabled=false;
 			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
 			motorFrontRight=new VictorSP(RobotMap.motorFrontRight);
 			motorRearLeft=new VictorSP(RobotMap.motorRearLeft);
 			motorRearRight=new VictorSP(RobotMap.motorRearRight);
 
+			drive.SafetyEnabled=false;
 			drive=new RobotDrive(motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight);
+		}
+
+		public DrivingSubsystem(){
+			System.Console.WriteLine("Init driving subsystem.");
+			bindMotors();
+		}
+
+		protected override void InitDefaultCommand(){
+			SetDefaultCommand(new DrivingCommand());
 		}
 
 		public void resetMotors(){
