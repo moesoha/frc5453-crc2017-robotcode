@@ -49,7 +49,7 @@ namespace FRC2017c.Subsystems{
 
 		public void robotClimb(double value){
 			if((value<=1.0) && (value>=-1.0)){
-				motorRobotClimb.SetSpeed(value);
+				motorRobotClimb.SetSpeed(-value);
 			}else{
 				Console.WriteLine("INVALID value: "+value.ToString());
 			}
