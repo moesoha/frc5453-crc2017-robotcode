@@ -14,9 +14,9 @@ namespace FRC2017c.Commands{
 		
 		private void doBallReady(){
 			if(FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")>0.02){
-				FRC2017c.operateSys.readyBall(1,oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")*RobotMap.ballReadySpeedConstant);
+				FRC2017c.operateSys.readyBall(1,FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")*RobotMap.ballReadySpeedConstant);
 			}else if(FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")>0.02){
-				FRC2017c.operateSys.readyBall(-1,oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")*RobotMap.ballReadySpeedConstant);
+				FRC2017c.operateSys.readyBall(-1,FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyCounterClockwise,"drive")*RobotMap.ballReadySpeedConstant);
 			}else{
 				FRC2017c.operateSys.readyBall(-1,0.0);
 			}
