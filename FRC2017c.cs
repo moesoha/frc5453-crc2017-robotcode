@@ -36,9 +36,17 @@ namespace FRC2017c{
 		}
 
 		public override void AutonomousInit(){
-			driveSys.arcadeDrive(1*RobotMap.drivingSpeedConstant,0,true);
-			System.Threading.Thread.Sleep(3000);
-			driveSys.arcadeDrive(0,0,true);
+			if(false){
+
+			}else{
+				driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+				System.Threading.Thread.Sleep(2000);
+				driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
+				System.Threading.Thread.Sleep(2000);
+				driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+				System.Threading.Thread.Sleep(20);
+				
+			}
 		}
 
 		public override void AutonomousPeriodic(){
