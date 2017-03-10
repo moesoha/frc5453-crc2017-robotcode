@@ -6,6 +6,7 @@ using WPILib;
 using WPILib.Commands;
 using FRC2017c;
 using FRC2017c.Commands;
+using WPILib.Extras;
 
 namespace FRC2017c.Subsystems{
 	public class DrivingSubsystem:Subsystem{
@@ -16,6 +17,9 @@ namespace FRC2017c.Subsystems{
 		VictorSP motorRearRight;
 		// init RobotDrive
 		RobotDrive drive;
+		WPILib.Extras.NavX.AHRS ahrs;
+
+		double angel;
 
 		public void bindMotors(){
 			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
@@ -31,6 +35,8 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public DrivingSubsystem(){
+			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
+			angel=ahrs.GetAngle();
 			System.Console.WriteLine("Init driving subsystem.");
 		}
 
@@ -57,6 +63,18 @@ namespace FRC2017c.Subsystems{
 					motorFrontRight.SetSpeed(value);
 					motorRearRight.SetSpeed(value);
 					break;
+				case "turn":
+					motorFrontLeft.SetSpeed(value);
+					motorRearLeft.SetSpeed(value);
+					motorFrontRight.SetSpeed(value);
+					motorRearRight.SetSpeed(value);
+					break;
+				case "all":
+					motorFrontLeft.SetSpeed(value);
+					motorRearLeft.SetSpeed(value);
+					motorFrontRight.SetSpeed(-value);
+					motorRearRight.SetSpeed(-value);
+					break;
 				default:
 					Console.WriteLine("no method for "+where);
 					break;
@@ -65,6 +83,31 @@ namespace FRC2017c.Subsystems{
 
 		public void arcadeDrive(double x,double y,bool squared){
 			drive.ArcadeDrive(y,x,squared);
+		}
+
+		public void turnToAngel(double targetAngel){
+			double nowAngelAdj;
+			double speed;
+			while(System.Math.Abs(ahrs.GetAngleAdjustment()-targetAngel)>=5){
+				speed=0.2;
+				nowAngelAdj=ahrs.GetAngleAdjustment();
+				if(System.Math.Abs(nowAngelAdj-targetAngel)>10){
+					speed=0.6;
+				}else if(System.Math.Abs(nowAngelAdj-targetAngel)>7){
+					speed=0.4;
+				}else{
+					speed=0.2;
+				}
+
+				if(nowAngelAdj>targetAngel){
+					drivingMotorControlRaw("turn",speed);
+				}else{
+					drivingMotorControlRaw("turn",-speed);
+				}
+
+				System.Threading.Thread.Sleep(10);
+			}
+			drivingMotorControlRaw("all",0);
 		}
 	}
 }

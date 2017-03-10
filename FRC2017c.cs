@@ -39,19 +39,59 @@ namespace FRC2017c{
 		}
 
 		public override void AutonomousInit(){
-			if(false){
-				driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
-				System.Threading.Thread.Sleep(750);
-				driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
-				System.Threading.Thread.Sleep(20);
-			}else{
-				driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
-				System.Threading.Thread.Sleep(2000);
-				//driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
-				//System.Threading.Thread.Sleep(2000);
-				driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
-				System.Threading.Thread.Sleep(20);
-				
+			/*
+			 | 1 | 0 | 2 |
+			 | 3 |   | 3 |
+			 */
+			const int mode=1;
+
+			switch(mode){
+				case 0:
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(750);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					break;
+				case 1:
+					driveSys.drivingMotorControlRaw("all",RobotMap.autonomousAutoGearSpeed);
+					System.Threading.Thread.Sleep(300);
+					driveSys.drivingMotorControlRaw("all",0);
+					driveSys.turnToAngel(RobotMap.autonomousAutoGearAngel);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(700);
+					driveSys.drivingMotorControlRaw("all",0);
+					System.Threading.Thread.Sleep(2500);
+					driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(600);
+					driveSys.turnToAngel(0);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(1200);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					break;
+				case 2:
+					driveSys.drivingMotorControlRaw("all",RobotMap.autonomousAutoGearSpeed);
+					System.Threading.Thread.Sleep(300);
+					driveSys.drivingMotorControlRaw("all",0);
+					driveSys.turnToAngel(-RobotMap.autonomousAutoGearAngel);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(700);
+					driveSys.drivingMotorControlRaw("all",0);
+					System.Threading.Thread.Sleep(2500);
+					driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(600);
+					driveSys.turnToAngel(0);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(1200);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					break;
+				case 3:					
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(2000);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					break;
 			}
 		}
 
@@ -60,7 +100,7 @@ namespace FRC2017c{
 		}
 
 		public override void TeleopInit(){
-
+			
 		}
 		
 		public override void DisabledInit(){
