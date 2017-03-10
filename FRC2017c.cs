@@ -24,7 +24,6 @@ namespace FRC2017c{
 			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
 			chooser=new SendableChooser();
-			
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
