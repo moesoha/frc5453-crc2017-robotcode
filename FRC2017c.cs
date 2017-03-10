@@ -15,9 +15,10 @@ namespace FRC2017c{
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static OI oi;
 		SendableChooser chooser;
-		// init usb camera and mjpegServer
+		// init usb camera and mjpegServer and CameraServer
 		UsbCamera usbCamera;
 		MjpegServer mjpegServer;
+		CameraServer camServer;
 
 		public override void RobotInit(){
 			System.Console.WriteLine("Hello, FRC2017!");
@@ -26,8 +27,11 @@ namespace FRC2017c{
 			chooser=new SendableChooser();
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
+			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
 			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
 			mjpegServer.Source=usbCamera;
+			camServer=CameraServer.Instance;
+			camServer.AddCamera(usbCamera);
 		}
 
 		public override void DisabledPeriodic(){
@@ -36,12 +40,15 @@ namespace FRC2017c{
 
 		public override void AutonomousInit(){
 			if(false){
-
+				driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+				System.Threading.Thread.Sleep(750);
+				driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+				System.Threading.Thread.Sleep(20);
 			}else{
 				driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
 				System.Threading.Thread.Sleep(2000);
-				driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
-				System.Threading.Thread.Sleep(2000);
+				//driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
+				//System.Threading.Thread.Sleep(2000);
 				driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 				System.Threading.Thread.Sleep(20);
 				
