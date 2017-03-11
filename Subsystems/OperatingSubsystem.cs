@@ -10,17 +10,20 @@ using FRC2017c.Commands;
 namespace FRC2017c.Subsystems{
 	public class OperatingSubsystem:Subsystem{
 		// init VictorSP
-		VictorSP motorBallReady;
-		VictorSP motorBallShoot;
-		VictorSP motorRobotClimb;
+		//VictorSP motorBallReady;
+		//VictorSP motorBallShoot;
+		VictorSP motorRobotClimbLeft;
+		VictorSP motorRobotClimbRight;
 
 		public void bindMotors(){
-			motorBallReady=new VictorSP(RobotMap.motorBallReady);
-			motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
-			motorRobotClimb=new VictorSP(RobotMap.motorRobotClimb);
-			motorBallReady.SafetyEnabled=false;
-			motorBallShoot.SafetyEnabled=false;
-			motorRobotClimb.SafetyEnabled=false;
+			//motorBallReady=new VictorSP(RobotMap.motorBallReady);
+			//motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
+			motorRobotClimbLeft=new VictorSP(RobotMap.motorRobotClimbLeft);
+			motorRobotClimbRight=new VictorSP(RobotMap.motorRobotClimbRight);
+			//motorBallReady.SafetyEnabled=false;
+			//motorBallShoot.SafetyEnabled=false;
+			motorRobotClimbLeft.SafetyEnabled=false;
+			motorRobotClimbRight.SafetyEnabled=false;
 		}
 
 		public OperatingSubsystem(){
@@ -34,11 +37,12 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public void resetMotors(){
-			motorBallShoot.StopMotor();
-			motorBallReady.StopMotor();
-			motorRobotClimb.StopMotor();
+			//motorBallShoot.StopMotor();
+			//motorBallReady.StopMotor();
+			motorRobotClimbLeft.StopMotor();
+			motorRobotClimbRight.StopMotor();
 		}
-
+		/*
 		public void readyBall(int clockwise,double value){
 			if((value<=1.0) && (value>=-1.0)){
 				motorBallReady.SetSpeed(value*clockwise);
@@ -54,10 +58,11 @@ namespace FRC2017c.Subsystems{
 				Console.WriteLine("INVALID value: "+value.ToString());
 			}
 		}
-
+		*/
 		public void robotClimb(double value){
 			if((value<=1.0) && (value>=-1.0)){
-				motorRobotClimb.SetSpeed(-value);
+				motorRobotClimbLeft.SetSpeed(-value);
+				motorRobotClimbRight.SetSpeed(-value);
 			}else{
 				Console.WriteLine("INVALID value: "+value.ToString());
 			}

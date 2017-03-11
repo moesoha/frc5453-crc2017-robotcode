@@ -15,7 +15,8 @@ namespace FRC2017c{
 		public static int motorRearRight=1;
 		public static int motorBallReady=6;
 		public static int motorBallShoot=5;
-		public static int motorRobotClimb=7;
+		public static int motorRobotClimbLeft=5;
+		public static int motorRobotClimbRight=6;
 
 		/* Driving Definition */
 		public static bool drivingSquaredInput=true;
@@ -33,10 +34,10 @@ namespace FRC2017c{
 		public static int joystickDrivingLeverY=1;
 		public static int joystickDrivingBallReadyClockwise=2;
 		public static int joystickDrivingBallReadyCounterClockwise=3;
+		public static int joystickDrivingRobotClimb=5;
 		/* Joystick Button Binding Definition */
 		public static int joystickDrivingStopAll=3;
 		public static int joystickDrivingBallShoot=2;
-		public static int joystickDrivingRobotClimb=1;
 
 		public static double autonomousAutoGearAngel=29;
 		public static double autonomousAutoGearSpeed=0.7;

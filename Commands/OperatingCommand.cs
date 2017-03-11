@@ -11,7 +11,7 @@ namespace FRC2017c.Commands{
 		public OperatingCommand(){
 			Requires(FRC2017c.operateSys);
 		}
-		
+		/*
 		private void doBallReady(){
 			if(FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")>0.02){
 				FRC2017c.operateSys.readyBall(1,FRC2017c.oi.readAxis(RobotMap.joystickDrivingBallReadyClockwise,"drive")*RobotMap.ballReadySpeedConstant);
@@ -29,10 +29,11 @@ namespace FRC2017c.Commands{
 				FRC2017c.operateSys.shootBall(0.0);
 			}
 		}
-
+		*/
 		private void doRobotClimb(){
-			if(FRC2017c.oi.readButton(RobotMap.joystickDrivingRobotClimb,"drive")){
-				FRC2017c.operateSys.robotClimb((double)(RobotMap.robotClimbSpeedConstant*1.0));
+			double speed=FRC2017c.oi.readAxis(RobotMap.joystickDrivingRobotClimb,"drive");
+			if(speed>0.008){
+				FRC2017c.operateSys.robotClimb(speed*RobotMap.robotClimbSpeedConstant);
 			}else{
 				FRC2017c.operateSys.robotClimb(0.0);
 			}
@@ -50,9 +51,9 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
-			doBallReady();
-			doBallShoot();
-			//doRobotClimb();
+			//doBallReady();
+			//doBallShoot();
+			doRobotClimb();
 			doMotorReset();
 		}
 
