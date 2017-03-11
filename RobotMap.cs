@@ -39,7 +39,7 @@ namespace FRC2017c{
 		public static int joystickDrivingStopAll=3;
 		public static int joystickDrivingBallShoot=2;
 
-		public static double autonomousAutoGearAngel=29;
+		public static double autonomousAutoGearAngel=28;
 		public static double autonomousAutoGearSpeed=0.7;
 	}
 }

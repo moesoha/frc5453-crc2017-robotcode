@@ -88,7 +88,7 @@ namespace FRC2017c.Subsystems{
 		public void turnToAngel(double targetAngel){
 			double nowAngelAdj;
 			double speed;
-			while(System.Math.Abs(ahrs.GetAngle()-targetAngel)>=5){
+			while(System.Math.Abs(ahrs.GetAngle()-targetAngel)>=3){
 				speed=0.2;
 				nowAngelAdj=ahrs.GetAngle();
 				if(System.Math.Abs(nowAngelAdj-targetAngel)>10){
