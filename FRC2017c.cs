@@ -27,7 +27,7 @@ namespace FRC2017c{
 			chooser=new SendableChooser();
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
-			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
+			//usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,320,240,15);
 			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
 			mjpegServer.Source=usbCamera;
 			camServer=CameraServer.Instance;
@@ -42,6 +42,7 @@ namespace FRC2017c{
 			/*
 			 | 1 | 0 | 2 |
 			 | 3 |   | 3 |
+			 TEST=4
 			 */
 			const int mode=1;
 
@@ -53,25 +54,28 @@ namespace FRC2017c{
 					System.Threading.Thread.Sleep(20);
 					break;
 				case 1:
-					driveSys.drivingMotorControlRaw("all",RobotMap.autonomousAutoGearSpeed);
-					System.Threading.Thread.Sleep(300);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(2000);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(2000);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(20);
+					//driveSys.drivingMotorControlRaw("all",RobotMap.autonomousAutoGearSpeed);
+					System.Threading.Thread.Sleep(400);
 					driveSys.drivingMotorControlRaw("all",0);
 					driveSys.turnToAngel(RobotMap.autonomousAutoGearAngel);
+					System.Threading.Thread.Sleep(1500);
 					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(700);
 					driveSys.drivingMotorControlRaw("all",0);
-					System.Threading.Thread.Sleep(2500);
-					driveSys.arcadeDrive(0,1,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(600);
-					driveSys.turnToAngel(0);
-					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(1200);
-					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(20);
+					System.Threading.Thread.Sleep(1500);
 					break;
 				case 2:
 					driveSys.drivingMotorControlRaw("all",RobotMap.autonomousAutoGearSpeed);
-					System.Threading.Thread.Sleep(300);
+					System.Threading.Thread.Sleep(400);
 					driveSys.drivingMotorControlRaw("all",0);
 					driveSys.turnToAngel(-RobotMap.autonomousAutoGearAngel);
 					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
@@ -86,11 +90,29 @@ namespace FRC2017c{
 					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(20);
 					break;
-				case 3:					
+				case 3:
 					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(2000);
 					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(20);
+					break;
+				case 4:
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(400);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(200);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(400);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(200);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(800);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(200);
+					driveSys.arcadeDrive(0,-1,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(400);
+					driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(200);
 					break;
 			}
 		}

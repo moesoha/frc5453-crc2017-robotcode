@@ -70,10 +70,10 @@ namespace FRC2017c.Subsystems{
 					motorRearRight.SetSpeed(value);
 					break;
 				case "all":
-					motorFrontLeft.SetSpeed(value);
-					motorRearLeft.SetSpeed(value);
-					motorFrontRight.SetSpeed(-value);
-					motorRearRight.SetSpeed(-value);
+					motorFrontLeft.SetSpeed(-value);
+					motorRearLeft.SetSpeed(-value);
+					motorFrontRight.SetSpeed(value);
+					motorRearRight.SetSpeed(value);
 					break;
 				default:
 					Console.WriteLine("no method for "+where);
@@ -88,9 +88,9 @@ namespace FRC2017c.Subsystems{
 		public void turnToAngel(double targetAngel){
 			double nowAngelAdj;
 			double speed;
-			while(System.Math.Abs(ahrs.GetAngleAdjustment()-targetAngel)>=5){
+			while(System.Math.Abs(ahrs.GetAngle()-targetAngel)>=5){
 				speed=0.2;
-				nowAngelAdj=ahrs.GetAngleAdjustment();
+				nowAngelAdj=ahrs.GetAngle();
 				if(System.Math.Abs(nowAngelAdj-targetAngel)>10){
 					speed=0.6;
 				}else if(System.Math.Abs(nowAngelAdj-targetAngel)>7){
@@ -100,11 +100,12 @@ namespace FRC2017c.Subsystems{
 				}
 
 				if(nowAngelAdj>targetAngel){
-					drivingMotorControlRaw("turn",speed);
-				}else{
 					drivingMotorControlRaw("turn",-speed);
+				}else{
+					drivingMotorControlRaw("turn",speed);
 				}
 
+				System.Console.WriteLine(nowAngelAdj);
 				System.Threading.Thread.Sleep(10);
 			}
 			drivingMotorControlRaw("all",0);
