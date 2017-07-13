@@ -10,24 +10,21 @@ using FRC2017c.Commands;
 namespace FRC2017c.Subsystems{
 	public class OperatingSubsystem:Subsystem{
 		// init VictorSP
-		//VictorSP motorBallReady;
-		//VictorSP motorBallShoot;
-		VictorSP motorRobotClimbLeft;
-		VictorSP motorRobotClimbRight;
+		VictorSP motorGearUp;
+		VictorSP motorGearIntake;
+		VictorSP motorClimb;
 
 		public void bindMotors(){
-			//motorBallReady=new VictorSP(RobotMap.motorBallReady);
-			//motorBallShoot=new VictorSP(RobotMap.motorBallShoot);
-			motorRobotClimbLeft=new VictorSP(RobotMap.motorRobotClimbLeft);
-			motorRobotClimbRight=new VictorSP(RobotMap.motorRobotClimbRight);
-			//motorBallReady.SafetyEnabled=false;
-			//motorBallShoot.SafetyEnabled=false;
-			motorRobotClimbLeft.SafetyEnabled=false;
-			motorRobotClimbRight.SafetyEnabled=false;
+			motorClimb=new VictorSP(RobotMap.motorClimb);
+			motorGearIntake=new VictorSP(RobotMap.motorGearIntake);
+			motorGearUp=new VictorSP(RobotMap.motorGearUp);
+			motorClimb.SafetyEnabled=false;
+			motorGearIntake.SafetyEnabled=false;
+			motorGearUp.SafetyEnabled=false;
 		}
 
 		public OperatingSubsystem(){
-
+			System.Console.WriteLine("Init operating subsystem.");
 		}
 
 		protected override void InitDefaultCommand(){
@@ -37,35 +34,9 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public void resetMotors(){
-			//motorBallShoot.StopMotor();
-			//motorBallReady.StopMotor();
-			motorRobotClimbLeft.StopMotor();
-			motorRobotClimbRight.StopMotor();
-		}
-		/*
-		public void readyBall(int clockwise,double value){
-			if((value<=1.0) && (value>=-1.0)){
-				motorBallReady.SetSpeed(value*clockwise);
-			}else{
-				Console.WriteLine("INVALID value: "+value.ToString());
-			}
-		}
-		
-		public void shootBall(double value){
-			if((value<=1.0) && (value>=-1.0)){
-				motorBallShoot.SetSpeed(-value);
-			}else{
-				Console.WriteLine("INVALID value: "+value.ToString());
-			}
-		}
-		*/
-		public void robotClimb(double value){
-			if((value<=1.0) && (value>=-1.0)){
-				motorRobotClimbLeft.SetSpeed(value);
-				motorRobotClimbRight.SetSpeed(-value);
-			}else{
-				Console.WriteLine("INVALID value: "+value.ToString());
-			}
+			motorGearUp.StopMotor();
+			motorGearIntake.StopMotor();
+			motorClimb.StopMotor();
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
-			FRC2017c.driveSys.arcadeDrive(0,-1*RobotMap.drivingSpeedConstant,RobotMap.drivingSquaredInput);
+			
 		}
 
 		protected override bool IsFinished(){

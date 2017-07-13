@@ -17,9 +17,6 @@ namespace FRC2017c.Subsystems{
 		VictorSP motorRearRight;
 		// init RobotDrive
 		RobotDrive drive;
-		WPILib.Extras.NavX.AHRS ahrs;
-
-		double angel;
 
 		public void bindMotors(){
 			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
@@ -35,8 +32,6 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public DrivingSubsystem(){
-			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
-			angel=ahrs.GetAngle();
 			System.Console.WriteLine("Init driving subsystem.");
 		}
 
@@ -85,30 +80,8 @@ namespace FRC2017c.Subsystems{
 			drive.ArcadeDrive(y,x,squared);
 		}
 
-		public void turnToAngel(double targetAngel){
-			double nowAngelAdj;
-			double speed;
-			while(System.Math.Abs(ahrs.GetAngle()-targetAngel)>=3){
-				speed=0.2;
-				nowAngelAdj=ahrs.GetAngle();
-				if(System.Math.Abs(nowAngelAdj-targetAngel)>10){
-					speed=0.6;
-				}else if(System.Math.Abs(nowAngelAdj-targetAngel)>7){
-					speed=0.4;
-				}else{
-					speed=0.2;
-				}
-
-				if(nowAngelAdj>targetAngel){
-					drivingMotorControlRaw("turn",-speed);
-				}else{
-					drivingMotorControlRaw("turn",speed);
-				}
-
-				System.Console.WriteLine(nowAngelAdj);
-				System.Threading.Thread.Sleep(10);
-			}
-			drivingMotorControlRaw("all",0);
+		public void tankDrive(double l,double r,bool squaredInputs){
+			drive.TankDrive(l,r,squaredInputs);
 		}
 	}
 }

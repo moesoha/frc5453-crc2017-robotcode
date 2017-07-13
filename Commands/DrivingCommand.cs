@@ -19,7 +19,14 @@ namespace FRC2017c.Commands{
 
 		// Called repeatedly when this Command is scheduled to run
 		protected override void Execute(){
-			FRC2017c.driveSys.arcadeDrive(-1*FRC2017c.oi.readAxis(RobotMap.joystickDrivingLeverX,"drive")*RobotMap.drivingSpeedConstant,FRC2017c.oi.readAxis(RobotMap.joystickDrivingLeverY,"drive")*RobotMap.drivingSpeedConstant,RobotMap.drivingSquaredInput);
+			double speed;
+
+			speed=RobotMap.drivingSpeedConstant[0];
+			for(int i=1;i<RobotMap.joystickDrivingSpeedControl.Length;i++){
+				speed=(FRC2017c.oi.readButton(RobotMap.joystickDrivingSpeedControl[i],"drive")) ? (speed+RobotMap.drivingSpeedConstant[i]) : speed;
+			}
+
+			FRC2017c.driveSys.tankDrive(1*(FRC2017c.oi.readAxis(RobotMap.joystickDrivingLeverL,"drive")*speed),-1*(FRC2017c.oi.readAxis(RobotMap.joystickDrivingLeverR,"drive")*speed),RobotMap.drivingSquaredInput);
 		}
 
 		protected override bool IsFinished(){
