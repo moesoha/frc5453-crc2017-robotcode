@@ -16,8 +16,33 @@ namespace FRC2017c.Commands{
 			System.Console.WriteLine("OperatingCommand Initialized.");
 		}
 
-		protected override void Execute(){
+		private void doGearUp(){
+			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpUp,"operate")){
+				FRC2017c.operateSys.gearUp(1);
+			}else if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpDown,"operate")){
+				FRC2017c.operateSys.gearUp(-1);
+			}else{
+				FRC2017c.operateSys.gearUp(0);
+			}
+		}
+
+		private void doGearIntake(){
+			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearIntakeIn,"operate")){
+				FRC2017c.operateSys.gearIntake(1);
+			}else if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearIntakeOut,"operate")){
+				FRC2017c.operateSys.gearIntake(-1);
+			}else{
+				FRC2017c.operateSys.gearIntake(0);
+			}
+		}
+
+		private void doClimb(){
 			
+		}
+
+		protected override void Execute(){
+			doGearIntake();
+			doGearUp();
 		}
 
 		protected override bool IsFinished(){

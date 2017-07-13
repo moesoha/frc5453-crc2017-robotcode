@@ -38,5 +38,17 @@ namespace FRC2017c.Subsystems{
 			motorGearIntake.StopMotor();
 			motorClimb.StopMotor();
 		}
+		
+		public void gearUp(int a){
+			motorGearUp.SetSpeed(1*a*RobotMap.gearUpSpeedConstant);
+		}
+		
+		public void gearIntake(int a){
+			motorGearIntake.SetSpeed(1*a*RobotMap.gearIntakeSpeedConstant);
+		}
+
+		public void climb(){
+			motorClimb.SetSpeed(1*RobotMap.robotClimbSpeedConstant);
+		}
 	}
 }
