@@ -10,19 +10,20 @@ using WPILib.Extras;
 
 namespace FRC2017c.Subsystems{
 	public class DrivingSubsystem:Subsystem{
-		// init VictorSP
-		VictorSP motorFrontLeft;
-		VictorSP motorFrontRight;
-		VictorSP motorRearLeft;
-		VictorSP motorRearRight;
+		// init Spark
+		Spark motorFrontLeft;
+		Spark motorFrontRight;
+		Spark motorRearLeft;
+		Spark motorRearRight;
+
 		// init RobotDrive
 		RobotDrive drive;
 
 		public void bindMotors(){
-			motorFrontLeft=new VictorSP(RobotMap.motorFrontLeft);
-			motorFrontRight=new VictorSP(RobotMap.motorFrontRight);
-			motorRearLeft=new VictorSP(RobotMap.motorRearLeft);
-			motorRearRight=new VictorSP(RobotMap.motorRearRight);
+			motorFrontLeft=new Spark(RobotMap.motorFrontLeft);
+			motorFrontRight=new Spark(RobotMap.motorFrontRight);
+			motorRearLeft=new Spark(RobotMap.motorRearLeft);
+			motorRearRight=new Spark(RobotMap.motorRearRight);
 			drive=new RobotDrive(motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight);
 			motorFrontLeft.SafetyEnabled=false;
 			motorFrontRight.SafetyEnabled=false;
