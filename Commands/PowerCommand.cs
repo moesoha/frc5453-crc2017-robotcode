@@ -14,19 +14,16 @@ namespace FRC2017c.Commands{
 
 		protected override void Initialize(){
 			System.Console.WriteLine("PowerCommand Initialized.");
-			FRC2017c.powerSys.liveWindowMode(true);
-		}
-		
-		private void motorChassisSafety(){
-			for(int i=0;i<RobotMap.pdpMotorOnChassis.Length;i++){
-				if(FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i])>RobotMap.pdpMotorOnChassisCriticalCurrent){
-					FRC2017c.driveSys.resetMotor(i);
-				}
-			}
 		}
 
 		protected override void Execute(){
+			FRC2017c.powerSys.motorChassisSafety();
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Temperature",FRC2017c.powerSys.getTemperature());
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Total Current",FRC2017c.powerSys.getTotalCurrent());
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 0",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[0]));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 1",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[1]));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 2",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[2]));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 3",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[3]));
 		}
 
 		protected override bool IsFinished(){
@@ -35,7 +32,6 @@ namespace FRC2017c.Commands{
 		
 		protected override void End(){
 			System.Console.WriteLine("PowerCommand is finished.");
-			FRC2017c.powerSys.liveWindowMode(false);
 		}
 
 		protected override void Interrupted(){

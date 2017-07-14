@@ -24,16 +24,20 @@ namespace FRC2017c.Subsystems{
 			return pdp.GetCurrent(channel);
 		}
 
+		public void motorChassisSafety(){
+			for(int i=0;i<RobotMap.pdpMotorOnChassis.Length;i++){
+				if(this.getCurrent(RobotMap.pdpMotorOnChassis[i])>RobotMap.pdpMotorOnChassisCriticalCurrent){
+					FRC2017c.driveSys.resetMotor(i);
+				}
+			}
+		}
+		
 		public double getTemperature(){
 			return pdp.GetTemperature();
 		}
-
-		public void liveWindowMode(bool switchOn){
-			if(switchOn){
-				pdp.StartLiveWindowMode();
-			}else{
-				pdp.StopLiveWindowMode();
-			}
+		
+		public double getTotalCurrent(){
+			return pdp.GetTotalCurrent();
 		}
 	}
 }

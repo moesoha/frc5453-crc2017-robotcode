@@ -31,6 +31,7 @@ namespace FRC2017c{
 			chooser.AddObject("Left",new AutonomousCommand("left"));
 			chooser.AddObject("Right",new AutonomousCommand("right"));
 			WPILib.SmartDashboard.SmartDashboard.PutData("Autonomous Mode",chooser);
+			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);

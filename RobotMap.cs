@@ -27,7 +27,7 @@ namespace FRC2017c{
 		public static double gearUpSpeedConstant=0.5;
 		public static double gearIntakeSpeedConstant=0.7;
 		public static double robotClimbSpeedConstant=1.0;
-		public static double pdpMotorOnChassisCriticalCurrent=10;/* Unit: Amp */
+		public static double pdpMotorOnChassisCriticalCurrent=30;/* Unit: Amp */
 
 		/* Joystick Port Definition */
 		public static int joystickDriving=0;
