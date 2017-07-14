@@ -24,7 +24,7 @@ namespace FRC2017c{
 		public static double[] drivingSpeedConstant=new double[]{0.6,-0.2,+0.4};
 		public static double gearUpSpeedConstant=0.5;
 		public static double gearIntakeSpeedConstant=0.7;
-		public static double robotClimbSpeedConstant=0.2;
+		public static double robotClimbSpeedConstant=1.0;
 
 		/* Joystick Port Definition */
 		public static int joystickDriving=0;
@@ -33,6 +33,7 @@ namespace FRC2017c{
 		public static int joystickDrivingLeverL=1;
 		public static int joystickDrivingLeverR=3;
 		public static int[] joystickDrivingSpeedControl=new int[]{0,7,5};
+		public static int joystickOperatingClimbLever=3;
 		public static int joystickOperatingGearUpUp=5;
 		public static int joystickOperatingGearUpDown=7;
 		public static int joystickOperatingGearIntakeIn=6;

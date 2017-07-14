@@ -37,12 +37,19 @@ namespace FRC2017c.Commands{
 		}
 
 		private void doClimb(){
-			
+			double axis=FRC2017c.oi.readAxis(RobotMap.joystickOperatingClimbLever,"operate");
+			if(axis<-0.01){
+				FRC2017c.operateSys.climb(System.Math.Abs(axis));
+			}else{
+				FRC2017c.operateSys.climb(0);
+			}
 		}
 
 		protected override void Execute(){
 			doGearIntake();
 			doGearUp();
+			doClimb();
+			//System.Console.WriteLine(FRC2017c.operateSys.gearUpGetPosition());
 		}
 
 		protected override bool IsFinished(){

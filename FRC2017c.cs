@@ -14,6 +14,7 @@ namespace FRC2017c{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static OI oi;
+		Command autonomousCommand;
 		SendableChooser chooser;
 		// init usb camera and mjpegServer and CameraServer
 		UsbCamera usbCamera;
@@ -25,6 +26,11 @@ namespace FRC2017c{
 			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
 			chooser=new SendableChooser();
+			
+			chooser.AddDefault("Center",new AutonomousCommand("center"));
+			chooser.AddObject("Left",new AutonomousCommand("left"));
+			chooser.AddObject("Right",new AutonomousCommand("right"));
+			SmartDashboard.PutData("Autonomous Mode",chooser);
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			//usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,320,240,15);
@@ -39,6 +45,8 @@ namespace FRC2017c{
 		}
 
 		public override void AutonomousInit(){
+			autonomousCommand=(Command)chooser.GetSelected();
+			autonomousCommand.Start();
 		}
 
 		public override void AutonomousPeriodic(){
