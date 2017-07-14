@@ -4,8 +4,6 @@ using System.Linq;
 using WPILib;
 using WPILib.Commands;
 using CSCore;
-using WPILib.LiveWindow;
-using WPILib.SmartDashboard;
 using FRC2017c.Subsystems;
 using FRC2017c.Commands;
 
@@ -13,9 +11,10 @@ namespace FRC2017c{
 	public class FRC2017c:IterativeRobot{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
+		public static readonly PowerSubsystem powerSys=new PowerSubsystem();
 		public static OI oi;
 		Command autonomousCommand;
-		SendableChooser chooser;
+		WPILib.SmartDashboard.SendableChooser chooser;
 		// init usb camera and mjpegServer and CameraServer
 		UsbCamera usbCamera;
 		MjpegServer mjpegServer;
@@ -25,18 +24,18 @@ namespace FRC2017c{
 			System.Console.WriteLine("Hello, FRC2017!");
 			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
-			chooser=new SendableChooser();
+			chooser=new WPILib.SmartDashboard.SendableChooser();
+			camServer=CameraServer.Instance;
 			
 			chooser.AddDefault("Center",new AutonomousCommand("center"));
 			chooser.AddObject("Left",new AutonomousCommand("left"));
 			chooser.AddObject("Right",new AutonomousCommand("right"));
-			SmartDashboard.PutData("Autonomous Mode",chooser);
+			WPILib.SmartDashboard.SmartDashboard.PutData("Autonomous Mode",chooser);
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
-			//usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,320,240,15);
+			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
 			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
 			mjpegServer.Source=usbCamera;
-			camServer=CameraServer.Instance;
 			camServer.AddCamera(usbCamera);
 		}
 
@@ -66,7 +65,7 @@ namespace FRC2017c{
 		}
 
 		public override void TestPeriodic(){
-			LiveWindow.Run();
+			WPILib.LiveWindow.LiveWindow.Run();
 		}
 	}
 }

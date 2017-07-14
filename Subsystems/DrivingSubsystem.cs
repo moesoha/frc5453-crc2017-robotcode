@@ -10,25 +10,24 @@ using WPILib.Extras;
 
 namespace FRC2017c.Subsystems{
 	public class DrivingSubsystem:Subsystem{
-		// init Spark
-		Spark motorFrontLeft;
-		Spark motorFrontRight;
-		Spark motorRearLeft;
-		Spark motorRearRight;
+		// init VictorSP
+		VictorSP[] motor;
 
 		// init RobotDrive
 		RobotDrive drive;
 
 		public void bindMotors(){
-			motorFrontLeft=new Spark(RobotMap.motorFrontLeft);
-			motorFrontRight=new Spark(RobotMap.motorFrontRight);
-			motorRearLeft=new Spark(RobotMap.motorRearLeft);
-			motorRearRight=new Spark(RobotMap.motorRearRight);
-			drive=new RobotDrive(motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight);
-			motorFrontLeft.SafetyEnabled=false;
-			motorFrontRight.SafetyEnabled=false;
-			motorRearLeft.SafetyEnabled=false;
-			motorRearRight.SafetyEnabled=false;
+			motor=new VictorSP[]{
+				new VictorSP(RobotMap.motorOnChassis[0]),
+				new VictorSP(RobotMap.motorOnChassis[1]),
+				new VictorSP(RobotMap.motorOnChassis[2]),
+				new VictorSP(RobotMap.motorOnChassis[3])
+			};
+
+			drive=new RobotDrive(motor[0],motor[1],motor[2],motor[3]);
+			for(int i=0;i<motor.Length;i++){
+				motor[i].SafetyEnabled=false;
+			}
 			drive.SafetyEnabled=false;
 		}
 
@@ -42,34 +41,37 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public void resetMotors(){
-			motorFrontLeft.StopMotor();
-			motorFrontRight.StopMotor();
-			motorRearLeft.StopMotor();
-			motorRearRight.StopMotor();
+			for(int i=0;i<motor.Length;i++){
+				motor[i].StopMotor();
+			}
 			drive.StopMotor();
 		}
 
-		public void drivingMotorControlRaw(string where,double value){
+		public void resetMotor(int serialNumber){
+			motor[serialNumber].StopMotor();
+		}
+
+		public void drivingMotorsControlRaw(string where,double value){
 			switch(where){
 				case "left":
-					motorFrontLeft.SetSpeed(value);
-					motorRearLeft.SetSpeed(value);
+					motor[0].SetSpeed(value);
+					motor[1].SetSpeed(value);
 					break;
 				case "right":
-					motorFrontRight.SetSpeed(value);
-					motorRearRight.SetSpeed(value);
+					motor[2].SetSpeed(value);
+					motor[3].SetSpeed(value);
 					break;
 				case "turn":
-					motorFrontLeft.SetSpeed(value);
-					motorRearLeft.SetSpeed(value);
-					motorFrontRight.SetSpeed(value);
-					motorRearRight.SetSpeed(value);
+					motor[0].SetSpeed(value);
+					motor[1].SetSpeed(value);
+					motor[2].SetSpeed(value);
+					motor[3].SetSpeed(value);
 					break;
 				case "all":
-					motorFrontLeft.SetSpeed(-value);
-					motorRearLeft.SetSpeed(-value);
-					motorFrontRight.SetSpeed(value);
-					motorRearRight.SetSpeed(value);
+					motor[0].SetSpeed(-value);
+					motor[1].SetSpeed(-value);
+					motor[2].SetSpeed(value);
+					motor[3].SetSpeed(value);
 					break;
 				default:
 					Console.WriteLine("no method for "+where);

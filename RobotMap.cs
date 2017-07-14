@@ -12,6 +12,8 @@ namespace FRC2017c{
 		public static int motorRearLeft=2;
 		public static int motorFrontRight=1;
 		public static int motorRearRight=0;
+		public static int[] motorOnChassis=new int[]{motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight};
+		public static int[] pdpMotorOnChassis=new int[]{};
 
 		public static int motorGearUp=8;
 		public static int motorGearIntake=9;
@@ -25,6 +27,7 @@ namespace FRC2017c{
 		public static double gearUpSpeedConstant=0.5;
 		public static double gearIntakeSpeedConstant=0.7;
 		public static double robotClimbSpeedConstant=1.0;
+		public static double pdpMotorOnChassisCriticalCurrent=10;/* Unit: Amp */
 
 		/* Joystick Port Definition */
 		public static int joystickDriving=0;

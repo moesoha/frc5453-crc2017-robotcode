@@ -8,7 +8,7 @@ using FRC2017c;
 
 namespace FRC2017c.Commands{
 	public class AutonomousCommand:Command{
-		int robotLocation=0;/* | -1 | 0 | 1 | */
+		int robotLocation=0; /* | -1 | 0 | 1 | */
 		bool power=true;
 
 		public AutonomousCommand(string where){
