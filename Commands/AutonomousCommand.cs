@@ -32,6 +32,7 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
+			FRC2017c.powerSys.motorChassisSafety();
 			switch(robotLocation){
 				case -1:
 					System.Console.WriteLine("Initial Location set to LEFT");

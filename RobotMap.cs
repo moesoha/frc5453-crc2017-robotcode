@@ -13,7 +13,7 @@ namespace FRC2017c{
 		public static int motorFrontRight=1;
 		public static int motorRearRight=0;
 		public static int[] motorOnChassis=new int[]{motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight};
-		public static int[] pdpMotorOnChassis=new int[]{};
+		public static int[] pdpMotorOnChassis=new int[]{0,1,2,3};
 
 		public static int motorGearUp=8;
 		public static int motorGearIntake=9;

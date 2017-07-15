@@ -19,6 +19,7 @@ namespace FRC2017c{
 		UsbCamera usbCamera;
 		MjpegServer mjpegServer;
 		CameraServer camServer;
+		WPILib.Extras.NavX.AHRS ahrs;
 
 		public override void RobotInit(){
 			System.Console.WriteLine("Hello, FRC2017!");
@@ -26,6 +27,8 @@ namespace FRC2017c{
 			oi=new OI();
 			chooser=new WPILib.SmartDashboard.SendableChooser();
 			camServer=CameraServer.Instance;
+			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
+			ahrs.Reset();
 			
 			chooser.AddDefault("Center",new AutonomousCommand("center"));
 			chooser.AddObject("Left",new AutonomousCommand("left"));
@@ -35,8 +38,8 @@ namespace FRC2017c{
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
-			mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
-			mjpegServer.Source=usbCamera;
+			//mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
+			//mjpegServer.Source=usbCamera;
 			camServer.AddCamera(usbCamera);
 		}
 

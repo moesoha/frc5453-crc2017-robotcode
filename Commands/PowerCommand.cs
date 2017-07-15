@@ -8,6 +8,8 @@ using FRC2017c;
 
 namespace FRC2017c.Commands{
 	public class PowerCommand:Command{
+		private double[] max=new double[]{0,0,0,0};
+
 		public PowerCommand(){
 			Requires(FRC2017c.powerSys);
 		}
@@ -17,13 +19,12 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
-			FRC2017c.powerSys.motorChassisSafety();
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Temperature",FRC2017c.powerSys.getTemperature());
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Total Current",FRC2017c.powerSys.getTotalCurrent());
-			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 0",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[0]));
-			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 1",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[1]));
-			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 2",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[2]));
-			WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current] Chassis Motor 3",FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[3]));
+			for(int i=0;i<4;i++){
+				max[i]=max[i]<FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i]) ? FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i]) : max[i];
+				WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current Max] Chassis Motor "+i.ToString(),max[i]);
+			}
 		}
 
 		protected override bool IsFinished(){
