@@ -9,10 +9,8 @@ using FRC2017c;
 namespace FRC2017c.Commands{
 	public class AutonomousCommand:Command{
 		int robotLocation=0; /* | -1 | 0 | 1 | */
-		bool power=true;
 
 		public AutonomousCommand(string where){
-			power=true;
 			switch(where){
 				case "left":
 					robotLocation=-1;
@@ -31,16 +29,43 @@ namespace FRC2017c.Commands{
 			System.Console.WriteLine("AutonomousCommand Initialized.");
 		}
 
+		private void amazingAutoTurn(double dest){
+			double angleInit=FRC2017c.gyroSys.getAngle();
+			FRC2017c.driveSys.drivingMotorsControlRaw("left",RobotMap.autonomousAutoGearTurningSpeed);
+			double delta=(FRC2017c.gyroSys.getAngle()-angleInit);
+			while(delta<dest){
+				delta=(FRC2017c.gyroSys.getAngle()-angleInit);
+				if(System.Math.Abs(dest-delta)<20){
+					FRC2017c.driveSys.drivingMotorsControlRaw("left",RobotMap.autonomousAutoGearTurningSpeed*0.7);
+				}else{
+					FRC2017c.driveSys.drivingMotorsControlRaw("left",RobotMap.autonomousAutoGearTurningSpeed*0.46);
+				}
+			}
+		}
+
 		protected override void Execute(){
 			FRC2017c.powerSys.motorChassisSafety();
 			switch(robotLocation){
 				case -1:
 					System.Console.WriteLine("Initial Location set to LEFT");
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(666);
+					amazingAutoTurn(RobotMap.autonomousAutoGearAngle);
 					break;
 				case 0:
 					System.Console.WriteLine("Initial Location set to CENTER");
-					FRC2017c.driveSys.arcadeDrive(0.4,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(4000);
+					/*FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(666);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(1333);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.3,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(1000);*/
+					FRC2017c.operateSys.gearUp(-0.6);
+					System.Threading.Thread.Sleep(1234);
+					FRC2017c.operateSys.gearUp(0);
+					FRC2017c.operateSys.gearIntake(-0.29);
+					System.Threading.Thread.Sleep(6666);
+					FRC2017c.operateSys.gearIntake(0);
 					break;
 				case 1:
 					System.Console.WriteLine("Initial Location set to RIGHT");
@@ -49,7 +74,7 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override bool IsFinished(){
-			return power;
+			return true;
 		}
 		
 		protected override void End(){

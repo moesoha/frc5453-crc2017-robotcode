@@ -37,13 +37,15 @@ namespace FRC2017c{
 		public static int joystickDrivingLeverR=3;
 		public static int[] joystickDrivingSpeedControl=new int[]{0,7,5};
 		public static int joystickOperatingClimbLever=3;
+		public static int joystickOperatingGearUpLever=1;
 		public static int joystickOperatingGearUpUp=5;
 		public static int joystickOperatingGearUpDown=7;
 		public static int joystickOperatingGearIntakeIn=6;
 		public static int joystickOperatingGearIntakeOut=8;
 
 		/* Awesome Autonomous */
-		public static double autonomousAutoGearAngel=28;
-		public static double autonomousAutoGearSpeed=0.7;
+		public static double autonomousAutoGearAngle=28;
+		public static double autonomousAutoGearStraightSpeed=0.4;
+		public static double autonomousAutoGearTurningSpeed=0.2;
 	}
 }

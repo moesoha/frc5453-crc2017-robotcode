@@ -15,12 +15,20 @@ namespace FRC2017c.Commands{
 		protected override void Initialize(){
 			System.Console.WriteLine("OperatingCommand Initialized.");
 		}
-
-		private void doGearUp(){
+		
+		private void doGearUpButton(){
 			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpUp,"operate")){
 				FRC2017c.operateSys.gearUp(1);
 			}else if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpDown,"operate")){
 				FRC2017c.operateSys.gearUp(-1);
+			}else{
+				FRC2017c.operateSys.gearUp(0);
+			}
+		}
+
+		private void doGearUpAxis(double axis){
+			if(System.Math.Abs(axis)>0.01){
+				FRC2017c.operateSys.gearUp(-1*axis);
 			}else{
 				FRC2017c.operateSys.gearUp(0);
 			}
@@ -47,7 +55,12 @@ namespace FRC2017c.Commands{
 
 		protected override void Execute(){
 			doGearIntake();
-			doGearUp();
+			double axis=FRC2017c.oi.readAxis(RobotMap.joystickOperatingGearUpLever,"operate");
+			if(System.Math.Abs(axis)>0.01){
+				doGearUpAxis(axis);
+			}else{
+				doGearUpButton();
+			}
 			doClimb();
 			//System.Console.WriteLine(FRC2017c.operateSys.gearUpGetPosition());
 		}

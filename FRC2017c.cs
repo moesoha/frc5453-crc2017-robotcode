@@ -12,14 +12,13 @@ namespace FRC2017c{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static readonly PowerSubsystem powerSys=new PowerSubsystem();
+		public static readonly GyroSubsystem gyroSys=new GyroSubsystem();
 		public static OI oi;
 		Command autonomousCommand;
 		WPILib.SmartDashboard.SendableChooser chooser;
-		// init usb camera and mjpegServer and CameraServer
+		// CameraServices
 		UsbCamera usbCamera;
-		MjpegServer mjpegServer;
 		CameraServer camServer;
-		WPILib.Extras.NavX.AHRS ahrs;
 
 		public override void RobotInit(){
 			System.Console.WriteLine("Hello, FRC2017!");
@@ -27,8 +26,6 @@ namespace FRC2017c{
 			oi=new OI();
 			chooser=new WPILib.SmartDashboard.SendableChooser();
 			camServer=CameraServer.Instance;
-			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
-			ahrs.Reset();
 			
 			chooser.AddDefault("Center",new AutonomousCommand("center"));
 			chooser.AddObject("Left",new AutonomousCommand("left"));
@@ -37,10 +34,14 @@ namespace FRC2017c{
 			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
-			usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
+			//usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
 			//mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
 			//mjpegServer.Source=usbCamera;
-			camServer.AddCamera(usbCamera);
+			camServer.StartAutomaticCapture(usbCamera);
+
+			//FRC2017c.operateSys.gearUp(1);
+			//System.Threading.Thread.Sleep(1888);
+			//FRC2017c.operateSys.gearUp(0);
 		}
 
 		public override void DisabledPeriodic(){
