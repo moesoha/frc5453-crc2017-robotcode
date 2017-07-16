@@ -14,6 +14,7 @@ namespace FRC2017c{
 		public static readonly PowerSubsystem powerSys=new PowerSubsystem();
 		public static readonly GyroSubsystem gyroSys=new GyroSubsystem();
 		public static OI oi;
+		public static NetworkTables.NetworkTable nt;
 		Command autonomousCommand;
 		WPILib.SmartDashboard.SendableChooser chooser;
 		// CameraServices
@@ -26,6 +27,7 @@ namespace FRC2017c{
 			oi=new OI();
 			chooser=new WPILib.SmartDashboard.SendableChooser();
 			camServer=CameraServer.Instance;
+			nt=NetworkTables.NetworkTable.GetTable("Forgiving/Vision");
 			
 			chooser.AddDefault("Center",new AutonomousCommand("center"));
 			chooser.AddObject("Left",new AutonomousCommand("left"));
@@ -34,9 +36,6 @@ namespace FRC2017c{
 			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
-			//usbCamera.SetVideoMode(CSCore.PixelFormat.Mjpeg,640,480,12);
-			//mjpegServer=new MjpegServer("USB Camera 0 Server",1181);
-			//mjpegServer.Source=usbCamera;
 			camServer.StartAutomaticCapture(usbCamera);
 
 			//FRC2017c.operateSys.gearUp(1);

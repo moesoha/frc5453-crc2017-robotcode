@@ -43,6 +43,16 @@ namespace FRC2017c.Commands{
 			}
 		}
 
+		private void followThePi(){
+			NetworkTables.NetworkTable nt=NetworkTables.NetworkTable.GetTable("Forgive/Vision");
+			string turn;
+			turn=nt.GetString("turn","great");
+			while(turn!="great"){
+				FRC2017c.driveSys.drivingMotorsControlRaw("turn",(RobotMap.autonomousAutoGearTurningSpeed)*((turn=="left") ? 1 : -1));
+				turn=nt.GetString("turn","great");
+			}
+		}
+
 		protected override void Execute(){
 			FRC2017c.powerSys.motorChassisSafety();
 			switch(robotLocation){
@@ -51,15 +61,17 @@ namespace FRC2017c.Commands{
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(666);
 					amazingAutoTurn(RobotMap.autonomousAutoGearAngle);
+					followThePi();
+					followThePi();
 					break;
 				case 0:
 					System.Console.WriteLine("Initial Location set to CENTER");
-					/*FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(666);
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(1333);
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.3,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(1000);*/
+					//FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					//System.Threading.Thread.Sleep(666);
+					//FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
+					//System.Threading.Thread.Sleep(1333);
+					//FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.3,0,RobotMap.drivingSquaredInput);
+					//System.Threading.Thread.Sleep(1000);
 					FRC2017c.operateSys.gearUp(-0.6);
 					System.Threading.Thread.Sleep(1234);
 					FRC2017c.operateSys.gearUp(0);
