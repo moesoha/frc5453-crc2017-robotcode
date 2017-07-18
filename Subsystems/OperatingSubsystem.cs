@@ -29,7 +29,7 @@ namespace FRC2017c.Subsystems{
 
 		protected override void InitDefaultCommand(){
 			SetDefaultCommand(new OperatingCommand());
-			System.Console.WriteLine("Init operating subsystem.");
+			System.Console.WriteLine("Init operating subsystem w/command.");
 			bindMotors();
 		}
 

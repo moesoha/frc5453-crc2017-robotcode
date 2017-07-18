@@ -9,9 +9,9 @@ using FRC2017c.Commands;
 
 namespace FRC2017c{
 	public class FRC2017c:IterativeRobot{
+		public static readonly PowerSubsystem powerSys=new PowerSubsystem();
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
-		public static readonly PowerSubsystem powerSys=new PowerSubsystem();
 		public static readonly GyroSubsystem gyroSys=new GyroSubsystem();
 		public static OI oi;
 		public static NetworkTables.NetworkTable nt;
@@ -37,10 +37,9 @@ namespace FRC2017c{
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			camServer.StartAutomaticCapture(usbCamera);
-
-			//FRC2017c.operateSys.gearUp(1);
-			//System.Threading.Thread.Sleep(1888);
-			//FRC2017c.operateSys.gearUp(0);
+		}
+		
+		public override void DisabledInit(){
 		}
 
 		public override void DisabledPeriodic(){
@@ -58,10 +57,6 @@ namespace FRC2017c{
 
 		public override void TeleopInit(){
 			
-		}
-		
-		public override void DisabledInit(){
-
 		}
 
 		public override void TeleopPeriodic(){

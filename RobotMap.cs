@@ -19,6 +19,12 @@ namespace FRC2017c{
 		public static int motorGearIntake=9;
 		public static int motorClimb=7;
 
+		/* PDP Channels */
+		public static int pdpMotorGearUp=11;
+
+		/* Stall Current */
+		public static double stallMotorGearUp=4;
+
 		/* Driving Definition */
 		public static bool drivingSquaredInput=true;
 
@@ -45,7 +51,7 @@ namespace FRC2017c{
 
 		/* Awesome Autonomous */
 		public static double autonomousAutoGearAngle=28;
-		public static double autonomousAutoGearStraightSpeed=0.4;
-		public static double autonomousAutoGearTurningSpeed=0.2;
+		public static double autonomousAutoGearStraightSpeed=0.5;
+		public static double autonomousAutoGearTurningSpeed=0.3;
 	}
 }

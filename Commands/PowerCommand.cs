@@ -21,6 +21,7 @@ namespace FRC2017c.Commands{
 		protected override void Execute(){
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Temperature",FRC2017c.powerSys.getTemperature());
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Total Current",FRC2017c.powerSys.getTotalCurrent());
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("Takein Motor 11",FRC2017c.powerSys.getCurrent(11));
 			for(int i=0;i<4;i++){
 				max[i]=max[i]<FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i]) ? FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i]) : max[i];
 				WPILib.SmartDashboard.SmartDashboard.PutNumber("[Current Max] Chassis Motor "+i.ToString(),max[i]);

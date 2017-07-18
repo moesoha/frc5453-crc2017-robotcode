@@ -39,5 +39,12 @@ namespace FRC2017c.Subsystems{
 		public double getTotalCurrent(){
 			return pdp.GetTotalCurrent();
 		}
+		
+		public void stallDetectionDelay(int pdpPort,double maxCurrent){
+			while(this.getCurrent(pdpPort)<maxCurrent){
+				continue;
+			}
+			return;
+		}
 	}
 }

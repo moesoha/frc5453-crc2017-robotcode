@@ -62,14 +62,14 @@ namespace FRC2017c.Subsystems{
 					motor[3].SetSpeed(value);
 					break;
 				case "turn":
-					motor[0].SetSpeed(value);
-					motor[1].SetSpeed(value);
+					motor[0].SetSpeed(-value);
+					motor[1].SetSpeed(-value);
 					motor[2].SetSpeed(value);
 					motor[3].SetSpeed(value);
 					break;
 				case "all":
-					motor[0].SetSpeed(-value);
-					motor[1].SetSpeed(-value);
+					motor[0].SetSpeed(value);
+					motor[1].SetSpeed(value);
 					motor[2].SetSpeed(value);
 					motor[3].SetSpeed(value);
 					break;

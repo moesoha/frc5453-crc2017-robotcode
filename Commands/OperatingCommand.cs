@@ -14,6 +14,16 @@ namespace FRC2017c.Commands{
 
 		protected override void Initialize(){
 			System.Console.WriteLine("OperatingCommand Initialized.");
+
+			//System.Console.WriteLine("Resetting Gear Position");
+			//System.Threading.Thread.Sleep(233);
+			//FRC2017c.operateSys.gearUp(-1);
+			//FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+			//System.Console.WriteLine("Stalled!");
+			//FRC2017c.operateSys.gearUp(0);
+			//System.Threading.Thread.Sleep(666);
+			//FRC2017c.operateSys.gearUp(1);
+			//System.Threading.Thread.Sleep(523);
 		}
 		
 		private void doGearUpButton(){
@@ -48,6 +58,8 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
+			WPILib.SmartDashboard.SmartDashboard.PutString("CV rtn 0",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetString("turn","null"));
+
 			doGearIntake();
 
 			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpUp,"operate")){

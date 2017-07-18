@@ -17,6 +17,7 @@ namespace FRC2017c.Subsystems{
 		public GyroSubsystem(){
 			System.Console.WriteLine("Init gyro subsystem.");
 			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
+			ahrs.Reset();
 			angle=ahrs.GetAngle();
 		}
 
