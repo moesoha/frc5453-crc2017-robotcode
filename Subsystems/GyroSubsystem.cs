@@ -18,11 +18,16 @@ namespace FRC2017c.Subsystems{
 			System.Console.WriteLine("Init gyro subsystem.");
 			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
 			ahrs.Reset();
+			ahrs.InitTable(NetworkTables.NetworkTable.GetTable("Robot/AHRS"));
 			angle=ahrs.GetAngle();
 		}
 
 		protected override void InitDefaultCommand(){
-			SetDefaultCommand(new GyroCommand());
+			//SetDefaultCommand(new GyroCommand());
+		}
+
+		public void updateTable(){
+			ahrs.UpdateTable();
 		}
 
 		public double getAngle(){

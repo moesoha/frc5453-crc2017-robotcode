@@ -13,12 +13,11 @@ namespace FRC2017c.Subsystems{
 
 		public PowerSubsystem(){
 			System.Console.WriteLine("Init power subsystem.");
+			pdp=new PowerDistributionPanel();
+			pdp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/PDP"));
 		}
 
 		protected override void InitDefaultCommand(){
-			SetDefaultCommand(new PowerCommand());
-			pdp=new PowerDistributionPanel();
-			pdp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/PDP"));
 		}
 
 		public void updateTable(){

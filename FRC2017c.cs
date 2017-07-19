@@ -13,6 +13,7 @@ namespace FRC2017c{
 		public static readonly DrivingSubsystem driveSys=new DrivingSubsystem();
 		public static readonly OperatingSubsystem operateSys=new OperatingSubsystem();
 		public static readonly GyroSubsystem gyroSys=new GyroSubsystem();
+		public static readonly CommunicationSubsystem commSys=new CommunicationSubsystem();
 		public static OI oi;
 		public static NetworkTables.NetworkTable nt;
 		Command autonomousCommand;
@@ -44,6 +45,7 @@ namespace FRC2017c{
 
 		public override void DisabledPeriodic(){
 			Scheduler.Instance.Run();
+			FRC2017c.commSys.updateAll();
 		}
 
 		public override void AutonomousInit(){
@@ -53,6 +55,7 @@ namespace FRC2017c{
 
 		public override void AutonomousPeriodic(){
 			Scheduler.Instance.Run();
+			FRC2017c.commSys.updateAll();
 		}
 
 		public override void TeleopInit(){
@@ -61,10 +64,12 @@ namespace FRC2017c{
 
 		public override void TeleopPeriodic(){
 			Scheduler.Instance.Run();
+			FRC2017c.commSys.updateAll();
 		}
 
 		public override void TestPeriodic(){
 			WPILib.LiveWindow.LiveWindow.Run();
+			FRC2017c.commSys.updateAll();
 		}
 	}
 }

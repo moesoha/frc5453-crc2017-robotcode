@@ -9,18 +9,27 @@ using FRC2017c.Commands;
 
 namespace FRC2017c.Subsystems{
 	public class OperatingSubsystem:Subsystem{
-		// init VictorSP
-		VictorSP motorGearUp;
-		VictorSP motorGearIntake;
-		VictorSP motorClimb;
+		// init Spark
+		Spark motorGearUp;
+		Spark motorGearIntake;
+		Spark motorClimb;
 
 		public void bindMotors(){
-			motorClimb=new VictorSP(RobotMap.motorClimb);
-			motorGearIntake=new VictorSP(RobotMap.motorGearIntake);
-			motorGearUp=new VictorSP(RobotMap.motorGearUp);
+			motorClimb=new Spark(RobotMap.motorClimb);
+			motorGearIntake=new Spark(RobotMap.motorGearIntake);
+			motorGearUp=new Spark(RobotMap.motorGearUp);
 			motorClimb.SafetyEnabled=false;
 			motorGearIntake.SafetyEnabled=false;
 			motorGearUp.SafetyEnabled=false;
+			motorClimb.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Climb"));
+			motorGearIntake.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearIntake"));
+			motorGearUp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearUp"));
+		}
+
+		public void updateTables(){
+			motorClimb.UpdateTable();
+			motorGearIntake.UpdateTable();
+			motorGearUp.UpdateTable();
 		}
 
 		public OperatingSubsystem(){

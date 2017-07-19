@@ -27,6 +27,7 @@ namespace FRC2017c.Subsystems{
 			drive=new RobotDrive(motor[0],motor[1],motor[2],motor[3]);
 			for(int i=0;i<motor.Length;i++){
 				motor[i].SafetyEnabled=false;
+				motor[i].InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Drive"+i.ToString()));
 			}
 			drive.SafetyEnabled=false;
 		}
@@ -38,6 +39,12 @@ namespace FRC2017c.Subsystems{
 		protected override void InitDefaultCommand(){
 			SetDefaultCommand(new DrivingCommand());
 			bindMotors();
+		}
+
+		public void updateTables(){
+			for(int i=0;i<motor.Length;i++){
+				motor[i].UpdateTable();
+			}
 		}
 
 		public void resetMotors(){

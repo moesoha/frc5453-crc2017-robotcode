@@ -58,8 +58,6 @@ namespace FRC2017c.Commands{
 		}
 
 		protected override void Execute(){
-			WPILib.SmartDashboard.SmartDashboard.PutString("CV rtn 0",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetString("turn","null"));
-
 			doGearIntake();
 
 			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearUpUp,"operate")){
