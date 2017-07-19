@@ -13,7 +13,6 @@ namespace FRC2017c{
 		public static int motorFrontRight=1;
 		public static int motorRearRight=0;
 		public static int[] motorOnChassis=new int[]{motorFrontLeft,motorRearLeft,motorFrontRight,motorRearRight};
-		public static int[] pdpMotorOnChassis=new int[]{0,1,2,3};
 
 		public static int motorGearUp=8;
 		public static int motorGearIntake=9;
@@ -21,9 +20,13 @@ namespace FRC2017c{
 
 		/* PDP Channels */
 		public static int pdpMotorGearUp=11;
+		public static int pdpMotorClimb=4;
+		public static int[] pdpMotorOnChassis=new int[]{0,2,12,14};
 
 		/* Stall Current */
 		public static double stallMotorGearUp=4;
+		public static double stallMotorClimb=30;
+		public static double pdpMotorOnChassisCriticalCurrent=40;/* Unit: Amp */
 
 		/* Driving Definition */
 		public static bool drivingSquaredInput=true;
@@ -31,9 +34,8 @@ namespace FRC2017c{
 		/* Constant Definition */
 		public static double[] drivingSpeedConstant=new double[]{0.6,-0.2,+0.4};
 		public static double gearUpSpeedConstant=0.5;
-		public static double gearIntakeSpeedConstant=0.7;
+		public static double gearIntakeSpeedConstant=0.65;
 		public static double robotClimbSpeedConstant=1.0;
-		public static double pdpMotorOnChassisCriticalCurrent=30;/* Unit: Amp */
 
 		/* Joystick Port Definition */
 		public static int joystickDriving=0;

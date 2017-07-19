@@ -42,7 +42,7 @@ namespace FRC2017c.Commands{
 			if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearIntakeIn,"operate")){
 				FRC2017c.operateSys.gearIntake(1);
 			}else if(FRC2017c.oi.readButton(RobotMap.joystickOperatingGearIntakeOut,"operate")){
-				FRC2017c.operateSys.gearIntake(-1);
+				FRC2017c.operateSys.gearIntake(-0.78);
 			}else{
 				FRC2017c.operateSys.gearIntake(0);
 			}

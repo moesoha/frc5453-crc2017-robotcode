@@ -18,6 +18,11 @@ namespace FRC2017c.Subsystems{
 		protected override void InitDefaultCommand(){
 			SetDefaultCommand(new PowerCommand());
 			pdp=new PowerDistributionPanel();
+			pdp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/PDP"));
+		}
+
+		public void updateTable(){
+			pdp.UpdateTable();
 		}
 
 		public double getCurrent(int channel){
@@ -29,6 +34,12 @@ namespace FRC2017c.Subsystems{
 				if(this.getCurrent(RobotMap.pdpMotorOnChassis[i])>RobotMap.pdpMotorOnChassisCriticalCurrent){
 					FRC2017c.driveSys.resetMotor(i);
 				}
+			}
+		}
+		
+		public void motorClimbSafety(){
+			if(this.getCurrent(RobotMap.pdpMotorClimb)>RobotMap.stallMotorClimb){
+				FRC2017c.operateSys.climb(0);
 			}
 		}
 		

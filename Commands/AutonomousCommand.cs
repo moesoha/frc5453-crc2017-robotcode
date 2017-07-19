@@ -29,12 +29,12 @@ namespace FRC2017c.Commands{
 			System.Console.WriteLine("AutonomousCommand Initialized.");
 		}
 
-		private void amazingAutoTurn(double dest){
+		private void amazingAutoTurn(double dest,int lOr){
 			double angleInit=FRC2017c.gyroSys.getAngle();
 			double speed=RobotMap.autonomousAutoGearTurningSpeed;
 			double delta=(FRC2017c.gyroSys.getAngle()-angleInit);
 			while(System.Math.Abs(delta)<System.Math.Abs(dest)){
-				FRC2017c.driveSys.drivingMotorsControlRaw("turn",speed);
+				FRC2017c.driveSys.drivingMotorsControlRaw("turn",speed*lOr);
 				if(System.Math.Abs(dest-delta)<3){
 					FRC2017c.driveSys.resetMotors();
 					break;
@@ -61,8 +61,7 @@ namespace FRC2017c.Commands{
 
 		protected override void Execute(){
 			NetworkTables.NetworkTable.GetTable("Forgiving/Vision").PutString("turn","null");
-			FRC2017c.powerSys.motorChassisSafety();
-			
+
 			switch(robotLocation){
 				case -1:
 					System.Console.WriteLine("Initial Location set to LEFT");
@@ -77,7 +76,7 @@ namespace FRC2017c.Commands{
 					FRC2017c.operateSys.gearUp(1);
 					System.Threading.Thread.Sleep(566);
 					FRC2017c.operateSys.gearUp(0);
-					amazingAutoTurn(RobotMap.autonomousAutoGearAngle);
+					amazingAutoTurn(RobotMap.autonomousAutoGearAngle,1);
 					//followThePi();
 					//followThePi();
 					break;
@@ -112,6 +111,20 @@ namespace FRC2017c.Commands{
 					break;
 				case 1:
 					System.Console.WriteLine("Initial Location set to RIGHT");
+					
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(800);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					FRC2017c.operateSys.gearUp(-1);
+					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					System.Console.WriteLine("Stalled!");
+					FRC2017c.operateSys.gearUp(0);
+					FRC2017c.operateSys.gearUp(1);
+					System.Threading.Thread.Sleep(566);
+					FRC2017c.operateSys.gearUp(0);
+					amazingAutoTurn(RobotMap.autonomousAutoGearAngle,-1);
+					//followThePi();
+					//followThePi();
 					break;
 			}
 		}
