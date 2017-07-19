@@ -13,6 +13,7 @@ namespace FRC2017c.Subsystems{
 		Spark motorGearUp;
 		Spark motorGearIntake;
 		Spark motorClimb;
+		bool tableInited=false;
 
 		public void bindMotors(){
 			motorClimb=new Spark(RobotMap.motorClimb);
@@ -21,9 +22,16 @@ namespace FRC2017c.Subsystems{
 			motorClimb.SafetyEnabled=false;
 			motorGearIntake.SafetyEnabled=false;
 			motorGearUp.SafetyEnabled=false;
-			motorClimb.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Climb"));
-			motorGearIntake.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearIntake"));
-			motorGearUp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearUp"));
+			initTables();
+		}
+
+		private void initTables(){
+			if(!tableInited){
+				motorClimb.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Climb"));
+				motorGearIntake.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearIntake"));
+				motorGearUp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/GearUp"));
+				tableInited=true;
+			}
 		}
 
 		public void updateTables(){

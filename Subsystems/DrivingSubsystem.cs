@@ -13,6 +13,8 @@ namespace FRC2017c.Subsystems{
 		// init VictorSP
 		VictorSP[] motor;
 
+		bool tableInited=false;
+
 		// init RobotDrive
 		RobotDrive drive;
 
@@ -27,9 +29,18 @@ namespace FRC2017c.Subsystems{
 			drive=new RobotDrive(motor[0],motor[1],motor[2],motor[3]);
 			for(int i=0;i<motor.Length;i++){
 				motor[i].SafetyEnabled=false;
-				motor[i].InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Drive"+i.ToString()));
 			}
 			drive.SafetyEnabled=false;
+			initTables();
+		}
+
+		private void initTables(){
+			if(!tableInited){
+				for(int i=0;i<motor.Length;i++){
+					motor[i].InitTable(NetworkTables.NetworkTable.GetTable("Robot/Motor/Drive"+i.ToString()));
+				}
+				tableInited=true;
+			}
 		}
 
 		public DrivingSubsystem(){
