@@ -10,17 +10,25 @@ using FRC2017c.Commands;
 namespace FRC2017c.Subsystems{
 	public class PowerSubsystem:Subsystem{
 		PowerDistributionPanel pdp;
+		bool tableInited=false;
 
 		public PowerSubsystem(){
 			System.Console.WriteLine("Init power subsystem.");
 			pdp=new PowerDistributionPanel();
-			pdp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/PDP"));
+		}
+
+		private void initTable(){
+			if(!tableInited){
+				pdp.InitTable(NetworkTables.NetworkTable.GetTable("Robot/PDP"));
+				tableInited=true;
+			}
 		}
 
 		protected override void InitDefaultCommand(){
 		}
 
 		public void updateTable(){
+			initTable();
 			pdp.UpdateTable();
 		}
 

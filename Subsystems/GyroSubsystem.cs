@@ -13,13 +13,20 @@ namespace FRC2017c.Subsystems{
 		WPILib.Extras.NavX.AHRS ahrs;
 
 		double angle;
+		bool tableInited=false;
 
 		public GyroSubsystem(){
 			System.Console.WriteLine("Init gyro subsystem.");
 			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
 			ahrs.Reset();
-			ahrs.InitTable(NetworkTables.NetworkTable.GetTable("Robot/AHRS"));
 			angle=ahrs.GetAngle();
+		}
+		
+		private void initTable(){
+			if(!tableInited){
+				ahrs.InitTable(NetworkTables.NetworkTable.GetTable("Robot/AHRS"));
+				tableInited=true;
+			}
 		}
 
 		protected override void InitDefaultCommand(){
@@ -27,11 +34,20 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public void updateTable(){
+			initTable();
 			ahrs.UpdateTable();
 		}
 
 		public double getAngle(){
 			return ahrs.GetAngle();
+		}
+
+		public double getHeading(){
+			return ahrs.GetFusedHeading();
+		}
+
+		public double getYaw(){
+			return ahrs.GetYaw();
 		}
 	}
 }

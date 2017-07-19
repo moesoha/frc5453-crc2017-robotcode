@@ -33,7 +33,7 @@ namespace FRC2017c.Commands{
 			double angleInit=FRC2017c.gyroSys.getAngle();
 			double speed=RobotMap.autonomousAutoGearTurningSpeed;
 			double delta=(FRC2017c.gyroSys.getAngle()-angleInit);
-			while(System.Math.Abs(delta)<System.Math.Abs(dest)){
+			while((System.Math.Abs(delta)<System.Math.Abs(dest)) && (!IsTimedOut())){
 				FRC2017c.driveSys.drivingMotorsControlRaw("turn",speed*lOr);
 				if(System.Math.Abs(dest-delta)<3){
 					FRC2017c.driveSys.resetMotors();
@@ -51,7 +51,7 @@ namespace FRC2017c.Commands{
 			NetworkTables.NetworkTable nt=NetworkTables.NetworkTable.GetTable("Forgiving/Vision");
 			string turn;
 			turn=nt.GetString("turn","null");
-			while(turn!="great"){
+			while((turn!="great") && (!IsTimedOut())){
 				if(turn!="null"){
 					FRC2017c.driveSys.drivingMotorsControlRaw("turn",(RobotMap.autonomousAutoGearTurningSpeed)*((turn=="left") ? 1 : -1));
 				}

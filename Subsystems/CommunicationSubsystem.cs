@@ -39,7 +39,7 @@ namespace FRC2017c.Subsystems{
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Total Current",FRC2017c.powerSys.getTotalCurrent());
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("Climb Motor 4",FRC2017c.powerSys.getCurrent(4));
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("Intake Motor 11",FRC2017c.powerSys.getCurrent(11));
-			WPILib.SmartDashboard.SmartDashboard.PutNumber("Angle",FRC2017c.gyroSys.getAngle());
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("Heading",FRC2017c.gyroSys.getHeading());
 			for(int i=0;i<4;i++){
 				WPILib.SmartDashboard.SmartDashboard.PutNumber("Chassis Motor Group "+i.ToString(),FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorOnChassis[i]));
 			}
