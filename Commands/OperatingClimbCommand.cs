@@ -4,25 +4,32 @@ using System.Linq;
 using System.Text;
 using WPILib;
 using WPILib.Commands;
-using FRC2017c;
 
 namespace FRC2017c.Commands{
-	public class OperatingCommand:Command{
-		public OperatingCommand(){
+	public class OperatingClimbCommand : Command{
+		public OperatingClimbCommand(){
 			Requires(FRC2017c.operateSys);
 		}
-
-		protected override void Execute(){
+		
+		protected override void Initialize(){
 		}
-
+		
+		protected override void Execute(){
+			double axis=FRC2017c.oi.readAxis(RobotMap.joystickOperatingClimbLever,"operate");
+			if(axis<-0.01){
+				FRC2017c.operateSys.climb(System.Math.Abs(axis));
+			}else{
+				FRC2017c.operateSys.climb(0);
+			}
+		}
+		
 		protected override bool IsFinished(){
 			return false;
 		}
 		
 		protected override void End(){
-			FRC2017c.operateSys.resetMotors();
 		}
-
+		
 		protected override void Interrupted(){
 			End();
 		}

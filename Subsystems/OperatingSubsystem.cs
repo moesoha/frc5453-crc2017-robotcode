@@ -14,6 +14,9 @@ namespace FRC2017c.Subsystems{
 		Spark motorGearIntake;
 		Spark motorClimb;
 		bool tableInited=false;
+		public bool busyGearIntake=false,busyGearUp=false;
+		public bool holdGearIntake=false,holdGearUp=false;
+		public double mdlGearIntake=0.0,mdlGearUp=0.0;
 
 		public void bindMotors(){
 			motorClimb=new Spark(RobotMap.motorClimb);
@@ -45,7 +48,7 @@ namespace FRC2017c.Subsystems{
 		}
 
 		protected override void InitDefaultCommand(){
-			SetDefaultCommand(new OperatingCommand());
+			SetDefaultCommand(new OperatingCommandGroup());
 			System.Console.WriteLine("Init operating subsystem w/command.");
 			bindMotors();
 		}

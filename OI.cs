@@ -7,9 +7,25 @@ namespace FRC2017c{
 		Joystick driving;
 		Joystick operating;
 
+		// init JoystickButtons
+		JoystickButton operatingButtonGearUpUp;
+		JoystickButton operatingButtonGearUpDown;
+		JoystickButton operatingButtonGearIntakeIn;
+		JoystickButton operatingButtonGearIntakeOut;
+
 		public OI(){
 			driving=new Joystick(RobotMap.joystickDriving);
 			operating=new Joystick(RobotMap.joystickOperating);
+
+			operatingButtonGearUpUp=new JoystickButton(operating,RobotMap.joystickOperatingGearUpUp);
+			operatingButtonGearUpDown=new JoystickButton(operating,RobotMap.joystickOperatingGearUpDown);
+			operatingButtonGearIntakeIn=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeIn);
+			operatingButtonGearIntakeOut=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeOut);
+
+			operatingButtonGearUpUp.WhileHeld(new Commands.OperatingGearUpButtonCommand(1));
+			operatingButtonGearUpDown.WhileHeld(new Commands.OperatingGearUpButtonCommand(-1));
+			operatingButtonGearIntakeIn.WhileHeld(new Commands.OperatingGearIntakeCommand(1));
+			operatingButtonGearIntakeOut.WhileHeld(new Commands.OperatingGearIntakeCommand(-0.78));
 		}
 		
 		public double readAxis(int port,string which){
