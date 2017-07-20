@@ -16,7 +16,7 @@ namespace FRC2017c.Commands{
 
 		protected override void Execute(){
 			double modulu=0.0;
-			if(!FRC2017c.operateSys.busyGearUp && !FRC2017c.operateSys.holdGearIntake){
+			if(!FRC2017c.operateSys.busyGearUp && !FRC2017c.operateSys.holdGearUp){
 				modulu=FRC2017c.oi.readAxis(RobotMap.joystickOperatingGearUpLever,"operate");
 				modulu=(System.Math.Abs(modulu)>0.01) ? (-modulu) : 0;
 				FRC2017c.operateSys.mdlGearUp=modulu;

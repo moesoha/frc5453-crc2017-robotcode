@@ -25,6 +25,7 @@ namespace FRC2017c{
 
 		/* Stall Current */
 		public static double stallMotorGearUp=4;
+		public static double stallMotorGearUpSmall=2.5;
 		public static double stallMotorClimb=30;
 		public static double pdpMotorOnChassisCriticalCurrent=40;/* Unit: Amp */
 

@@ -23,7 +23,9 @@ namespace FRC2017c.Commands{
 		
 		protected override void Execute(){
 			FRC2017c.operateSys.mdlGearUp=modulu;
-			FRC2017c.operateSys.gearUp(modulu);
+			if(!FRC2017c.operateSys.holdGearUp){
+				FRC2017c.operateSys.gearUp(modulu);
+			}
 		}
 		
 		protected override bool IsFinished(){
