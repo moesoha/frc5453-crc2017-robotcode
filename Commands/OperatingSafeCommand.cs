@@ -8,7 +8,7 @@ using WPILib.Commands;
 namespace FRC2017c.Commands{
 	public class OperatingSafeCommand : Command{
 		public OperatingSafeCommand(){
-			Requires(FRC2017c.operateSys);
+			//Requires(FRC2017c.operateSys);
 		}
 		
 		protected override void Initialize(){

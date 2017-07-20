@@ -9,7 +9,12 @@ using FRC2017c;
 namespace FRC2017c.Commands{
 	public class OperatingCommand:Command{
 		public OperatingCommand(){
-			Requires(FRC2017c.operateSys);
+			//Requires(FRC2017c.operateSys);
+		}
+
+		protected override void Initialize(){
+			System.Console.WriteLine("OperatingCommand Initialized.");
+			//(new OperatingCommandGroup()).Start();
 		}
 
 		protected override void Execute(){
@@ -20,6 +25,8 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void End(){
+			//(new OperatingCommandGroup()).Cancel();
+			System.Console.WriteLine("OperatingCommand Ended.");
 			FRC2017c.operateSys.resetMotors();
 		}
 

@@ -10,7 +10,7 @@ namespace FRC2017c.Commands{
 		double modulu=0.0;
 		public OperatingGearIntakeCommand(double mdl){
 			modulu=mdl;
-			Requires(FRC2017c.operateSys);
+			//Requires(FRC2017c.operateSys);
 		}
 		
 		protected override void Initialize(){
