@@ -14,7 +14,11 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void Initialize(){
-			FRC2017c.operateSys.busyGearIntake=true;
+			if(modulu!=0.0){
+				FRC2017c.operateSys.busyGearIntake=true;
+			}else{
+				FRC2017c.operateSys.busyGearIntake=false;
+			}
 		}
 		
 		protected override void Execute(){

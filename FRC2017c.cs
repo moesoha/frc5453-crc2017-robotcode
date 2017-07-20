@@ -59,10 +59,11 @@ namespace FRC2017c{
 		}
 
 		public override void TeleopInit(){
-			
+
 		}
 
 		public override void TeleopPeriodic(){
+			Scheduler.Instance.AddCommand(new Commands.OperatingCommandGroup());
 			Scheduler.Instance.Run();
 			FRC2017c.commSys.updateAll();
 		}

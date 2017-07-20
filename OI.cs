@@ -22,10 +22,14 @@ namespace FRC2017c{
 			operatingButtonGearIntakeIn=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeIn);
 			operatingButtonGearIntakeOut=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeOut);
 
-			operatingButtonGearUpUp.WhileHeld(new Commands.OperatingGearUpButtonCommand(1));
-			operatingButtonGearUpDown.WhileHeld(new Commands.OperatingGearUpButtonCommand(-1));
-			operatingButtonGearIntakeIn.WhileHeld(new Commands.OperatingGearIntakeCommand(1));
-			operatingButtonGearIntakeOut.WhileHeld(new Commands.OperatingGearIntakeCommand(-0.78));
+			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(1));
+			operatingButtonGearUpUp.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
+			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-1));
+			operatingButtonGearUpDown.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
+			operatingButtonGearIntakeIn.WhenPressed(new Commands.OperatingGearIntakeCommand(1));
+			operatingButtonGearIntakeIn.WhenReleased(new Commands.OperatingGearIntakeCommand(0));
+			operatingButtonGearIntakeOut.WhenPressed(new Commands.OperatingGearIntakeCommand(-0.78));
+			operatingButtonGearIntakeOut.WhenReleased(new Commands.OperatingGearIntakeCommand(0));
 		}
 		
 		public double readAxis(int port,string which){

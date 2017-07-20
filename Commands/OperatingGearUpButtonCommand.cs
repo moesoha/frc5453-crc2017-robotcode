@@ -14,7 +14,11 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void Initialize(){
-			FRC2017c.operateSys.busyGearUp=true;
+			if(modulu!=0){
+				FRC2017c.operateSys.busyGearUp=true;
+			}else{
+				FRC2017c.operateSys.busyGearUp=false;
+			}
 		}
 		
 		protected override void Execute(){
@@ -27,7 +31,6 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void End(){
-			FRC2017c.operateSys.busyGearUp=false;
 		}
 		
 		protected override void Interrupted(){
