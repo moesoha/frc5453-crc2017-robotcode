@@ -34,7 +34,10 @@ namespace FRC2017c.Subsystems{
 		}
 
 		public void updateSmartDashboard(){
-			WPILib.SmartDashboard.SmartDashboard.PutString("CV rtn 0",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetString("turn","null"));
+			WPILib.SmartDashboard.SmartDashboard.PutString("CV turn",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetString("turn","null"));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("CV angle",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetNumber("angle",0.0));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("CV area0",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetNumber("area0",0.0));
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("CV area1",NetworkTables.NetworkTable.GetTable("Forgiving/Vision").GetNumber("area1",0.0));
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Temperature",FRC2017c.powerSys.getTemperature());
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("PDP Total Current",FRC2017c.powerSys.getTotalCurrent());
 			WPILib.SmartDashboard.SmartDashboard.PutNumber("Climb Motor 4",FRC2017c.powerSys.getCurrent(4));

@@ -26,6 +26,7 @@ namespace FRC2017c{
 			System.Console.WriteLine("Hello, FRC2017!");
 			System.Console.WriteLine("TrueMoe RobotCode 2017c");
 			oi=new OI();
+			FRC2017c.gyroSys.reset();
 			chooser=new WPILib.SmartDashboard.SendableChooser();
 			camServer=CameraServer.Instance;
 			nt=NetworkTables.NetworkTable.GetTable("Forgiving/Vision");
@@ -35,6 +36,7 @@ namespace FRC2017c{
 			chooser.AddObject("Right",new AutonomousCommand("right"));
 			WPILib.SmartDashboard.SmartDashboard.PutData("Autonomous Mode",chooser);
 			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
+			FRC2017c.gyroSys.resetDisplacement();
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
 			camServer.StartAutomaticCapture(usbCamera);
@@ -59,11 +61,12 @@ namespace FRC2017c{
 		}
 
 		public override void TeleopInit(){
-
+			FRC2017c.gyroSys.resetDisplacement();
 		}
 
 		public override void TeleopPeriodic(){
 			Scheduler.Instance.Run();
+			//System.Console.WriteLine(gyroSys.getDisplacement().ToString()+"    X: "+gyroSys.getDisplacementX().ToString()+"  Y: "+gyroSys.getDisplacementY().ToString()+"  Z:"+gyroSys.getDisplacementZ().ToString());
 			FRC2017c.commSys.updateAll();
 		}
 

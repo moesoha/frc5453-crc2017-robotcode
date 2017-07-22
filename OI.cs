@@ -22,6 +22,10 @@ namespace FRC2017c{
 			operatingButtonGearIntakeIn=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeIn);
 			operatingButtonGearIntakeOut=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeOut);
 
+			(new JoystickButton(driving,1)).ToggleWhenPressed(new Commands.DrivingStraightCommand(0.36));
+			(new JoystickButton(driving,3)).ToggleWhenPressed(new Commands.DrivingStraightCommand(-0.36));
+
+
 			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(1));
 			operatingButtonGearUpUp.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
 			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-1));

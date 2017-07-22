@@ -29,6 +29,7 @@ namespace FRC2017c.Subsystems{
 			drive=new RobotDrive(motor[0],motor[1],motor[2],motor[3]);
 			for(int i=0;i<motor.Length;i++){
 				motor[i].SafetyEnabled=false;
+				//motor[i].Inverted=true;
 			}
 			drive.SafetyEnabled=false;
 			initTables();

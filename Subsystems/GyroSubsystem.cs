@@ -20,6 +20,7 @@ namespace FRC2017c.Subsystems{
 			ahrs=new WPILib.Extras.NavX.AHRS(SPI.Port.MXP);
 			ahrs.Reset();
 			angle=ahrs.GetAngle();
+			System.Console.WriteLine("NaiveX Version: "+ahrs.GetFirmwareVersion());
 		}
 		
 		private void initTable(){
@@ -45,9 +46,33 @@ namespace FRC2017c.Subsystems{
 		public double getHeading(){
 			return ahrs.GetFusedHeading();
 		}
-
+		
 		public double getYaw(){
 			return ahrs.GetYaw();
+		}
+		
+		public double getDisplacementX(){
+			return ahrs.GetDisplacementX();
+		}
+		
+		public double getDisplacementY(){
+			return ahrs.GetDisplacementY();
+		}
+		
+		public double getDisplacementZ(){
+			return ahrs.GetDisplacementZ();
+		}
+		
+		public void resetDisplacement(){
+			ahrs.ResetDisplacement();
+		}
+		
+		public double getDisplacement(){
+			return System.Math.Sqrt(System.Math.Pow(ahrs.GetDisplacementX(),2)+System.Math.Pow(ahrs.GetDisplacementY(),2)+System.Math.Pow(ahrs.GetDisplacementZ(),2));
+		}
+
+		public void reset(){
+			ahrs.Reset();
 		}
 	}
 }
