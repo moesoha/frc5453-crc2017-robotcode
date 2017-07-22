@@ -72,7 +72,7 @@ namespace FRC2017c.Commands{
 					System.Threading.Thread.Sleep(800);
 					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					FRC2017c.operateSys.gearUp(-1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					await FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
 					System.Console.WriteLine("Stalled!");
 					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.operateSys.gearUp(1);
@@ -99,7 +99,7 @@ namespace FRC2017c.Commands{
 					System.Threading.Thread.Sleep(1000);
 					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					FRC2017c.operateSys.gearUp(1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					await FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
 					System.Console.WriteLine("Stalled!");
 					FRC2017c.operateSys.gearUp(-1);
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.64,0,RobotMap.drivingSquaredInput);
@@ -118,44 +118,45 @@ namespace FRC2017c.Commands{
 				case 1:
 					System.Console.WriteLine("Initial Location set to RIGHT");
 					
-					/*FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(640);
 					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					FRC2017c.operateSys.gearUp(-1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					await FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
 					System.Console.WriteLine("Stalled!");
 					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.operateSys.gearUp(1);
 					System.Threading.Thread.Sleep(566);
 					FRC2017c.operateSys.gearUp(0);
-					*/
+					
 					nt.PutString("turn","null");
 					nt.PutNumber("angle",0.0);
-					/*
-					amazingAutoTurn(RobotMap.autonomousAutoGearAngle,-1);
+					
+					await amazingAutoTurn(RobotMap.autonomousAutoGearAngle,-1,2.5);
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(300);
-					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);*/
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+
 					System.Threading.Thread.Sleep(1200);
 					double angle=nt.GetNumber("angle",0.0);
 					await amazingAutoTurn(System.Math.Abs(angle),0.66*((nt.GetString("turn","null")=="right") ? 1 : -1),2.4);
-					System.Threading.Thread.Sleep(400);
+					System.Threading.Thread.Sleep(200);
 					nt.PutString("turn","null");
 					nt.PutNumber("angle",0.0);
-					System.Threading.Thread.Sleep(800);
+					System.Threading.Thread.Sleep(1000);
 					angle=nt.GetNumber("angle",0.0);
 					await amazingAutoTurn(System.Math.Abs(angle),0.58*((nt.GetString("turn","null")=="right") ? 1 : -1),1.6);
-
-					/*amazingAutoTurn(System.Math.Abs(nt.GetNumber("angle",0.0)),0.6*((nt.GetString("turn","null")=="right") ? 1 : -1));
-					System.Threading.Thread.Sleep(800);
-					FRC2017c.driveSys.drivingMotorsControlRaw("turn",speed*FlOr);
+					
 					FRC2017c.operateSys.gearUp(1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					await FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
 					System.Console.WriteLine("Stalled!");
 					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.operateSys.gearUp(-1);
 					System.Threading.Thread.Sleep(600);
-					FRC2017c.operateSys.gearUp(0);*/
+					FRC2017c.operateSys.gearUp(0);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.6,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(640);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					break;
 			}
 		}

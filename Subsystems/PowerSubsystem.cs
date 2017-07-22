@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WPILib;
 using WPILib.Commands;
 using FRC2017c;
@@ -58,11 +59,13 @@ namespace FRC2017c.Subsystems{
 			return pdp.GetTotalCurrent();
 		}
 		
-		public void stallDetectionDelay(int pdpPort,double maxCurrent){
-			while(this.getCurrent(pdpPort)<maxCurrent){
-				continue;
-			}
-			return;
+		public Task<bool> stallDetectionDelay(int pdpPort,double maxCurrent){
+			return Task.Run(()=>{
+				while(this.getCurrent(pdpPort)<maxCurrent){
+					continue;
+				}
+				return true;
+			});
 		}
 	}
 }
