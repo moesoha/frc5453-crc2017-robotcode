@@ -33,8 +33,8 @@ namespace FRC2017c{
 			nt=NetworkTables.NetworkTable.GetTable("Forgiving/Vision");
 			
 			chooser.AddDefault("Center",new AutonomousCommand("center"));
-			chooser.AddObject("Left",new AutonomousCommand("left"));
-			chooser.AddObject("Right",new AutonomousCommand("right"));
+			chooser.AddObject("turn Right",new AutonomousCommand("left"));
+			chooser.AddObject("turn Left",new AutonomousCommand("right"));
 			WPILib.SmartDashboard.SmartDashboard.PutData("Autonomous Mode",chooser);
 			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
 			FRC2017c.gyroSys.resetDisplacement();

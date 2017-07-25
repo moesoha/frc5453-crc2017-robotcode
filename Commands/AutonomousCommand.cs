@@ -64,11 +64,58 @@ namespace FRC2017c.Commands{
 			nt=NetworkTables.NetworkTable.GetTable("Forgiving/Vision");
 			nt.PutString("turn","null");
 			nt.PutNumber("angle",0.0);
+			double angle;
 
-			switch(robotLocation){
-				case -1:
-					System.Console.WriteLine("Initial Location set to LEFT");
+			switch(System.Math.Abs(robotLocation)){
+				case 1:
+					System.Console.WriteLine("Initial Location set to "+((robotLocation==-1)?"LEFT":"RIGHT"));
+					//int test=0;
+					FRC2017c.operateSys.gearUp(-1);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(600);
+					//test++;System.Console.WriteLine("orz: "+test.ToString());
+					FRC2017c.driveSys.arcadeDrive(-0.3,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(340);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					FRC2017c.operateSys.gearUp(-1);
+					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					System.Console.WriteLine("Stalled!");
+					FRC2017c.operateSys.gearUp(0);
+					System.Threading.Thread.Sleep(300);
+					FRC2017c.operateSys.gearUp(1);
+					System.Threading.Thread.Sleep(500);
+					FRC2017c.operateSys.gearUp(0);
 					
+					nt.PutString("turn","null");
+					nt.PutNumber("angle",0.0);
+					
+					await amazingAutoTurn(0.6*RobotMap.autonomousAutoGearAngle,-robotLocation,2);
+					/*
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(100);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(500);
+					*/
+			
+					System.Threading.Thread.Sleep(800);
+					angle=nt.GetNumber("angle",0.0);
+					if(System.Math.Abs(angle)<0.2){
+						System.Threading.Thread.Sleep(400);
+						angle=nt.GetNumber("angle",0.0);
+					}
+					await amazingAutoTurn(System.Math.Abs(angle),0.57*((nt.GetString("turn","null")=="right") ? 1 : -1),1);
+
+					System.Threading.Thread.Sleep(180);
+					FRC2017c.operateSys.gearUp(1);
+					System.Threading.Thread.Sleep(600);
+					FRC2017c.operateSys.gearUp(0);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.6,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(800);
+					FRC2017c.driveSys.arcadeDrive(0.2,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(440);
+					FRC2017c.operateSys.gearIntake(-0.16);
+					System.Threading.Thread.Sleep(6000);
+					FRC2017c.operateSys.gearIntake(0);
 					break;
 				case 0:
 					System.Console.WriteLine("Initial Location set to CENTER");
@@ -101,55 +148,6 @@ namespace FRC2017c.Commands{
 					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.operateSys.gearIntake(-0.29);
 					System.Threading.Thread.Sleep(6666);
-					FRC2017c.operateSys.gearIntake(0);
-					break;
-				case 1:
-					System.Console.WriteLine("Initial Location set to RIGHT");
-					//int test=0;
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(600);
-					//test++;System.Console.WriteLine("orz: "+test.ToString());
-					FRC2017c.driveSys.arcadeDrive(-0.3,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(340);
-					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(600);
-					
-					nt.PutString("turn","null");
-					nt.PutNumber("angle",0.0);
-					
-					await amazingAutoTurn(0.6*RobotMap.autonomousAutoGearAngle,-1,2);
-					/*
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(100);
-					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(500);
-					*/
-					FRC2017c.operateSys.gearUp(-1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
-					System.Console.WriteLine("Stalled!");
-					FRC2017c.operateSys.gearUp(0);
-					FRC2017c.operateSys.gearUp(1);
-					System.Threading.Thread.Sleep(500);
-					FRC2017c.operateSys.gearUp(0);
-			
-					System.Threading.Thread.Sleep(600);
-					double angle=nt.GetNumber("angle",0.0);
-					if(System.Math.Abs(angle)<0.2){
-						angle=nt.GetNumber("angle",0.0);
-					}
-					await amazingAutoTurn(System.Math.Abs(angle),0.57*((nt.GetString("turn","null")=="right") ? 1 : -1),1);
-					System.Console.WriteLine(angle);
-
-					System.Threading.Thread.Sleep(180);
-					FRC2017c.operateSys.gearUp(1);
-					System.Threading.Thread.Sleep(600);
-					FRC2017c.operateSys.gearUp(0);
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.6,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(800);
-					FRC2017c.driveSys.arcadeDrive(0.2,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(440);
-					FRC2017c.operateSys.gearIntake(-0.3);
-					System.Threading.Thread.Sleep(6000);
 					FRC2017c.operateSys.gearIntake(0);
 					break;
 			}
