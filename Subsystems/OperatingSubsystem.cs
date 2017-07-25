@@ -9,19 +9,19 @@ using FRC2017c.Commands;
 
 namespace FRC2017c.Subsystems{
 	public class OperatingSubsystem:Subsystem{
-		// init Spark
-		Spark motorGearUp;
-		Spark motorGearIntake;
-		Spark motorClimb;
+		// init VictorSP
+		VictorSP motorGearUp;
+		VictorSP motorGearIntake;
+		VictorSP motorClimb;
 		bool tableInited=false;
 		public bool busyGearIntake=false,busyGearUp=false;
 		public bool holdGearIntake=false,holdGearUp=false;
 		public double mdlGearIntake=0.0,mdlGearUp=0.0;
 
 		public void bindMotors(){
-			motorClimb=new Spark(RobotMap.motorClimb);
-			motorGearIntake=new Spark(RobotMap.motorGearIntake);
-			motorGearUp=new Spark(RobotMap.motorGearUp);
+			motorClimb=new VictorSP(RobotMap.motorClimb);
+			motorGearIntake=new VictorSP(RobotMap.motorGearIntake);
+			motorGearUp=new VictorSP(RobotMap.motorGearUp);
 			motorClimb.SafetyEnabled=false;
 			motorGearIntake.SafetyEnabled=false;
 			motorGearUp.SafetyEnabled=false;
@@ -64,7 +64,7 @@ namespace FRC2017c.Subsystems{
 		}
 		
 		public void gearIntake(double a){
-			motorGearIntake.SetSpeed(1*a*RobotMap.gearIntakeSpeedConstant);
+			motorGearIntake.SetSpeed(((a>0)?1:-1)*((System.Math.Abs(a)>1)?1:System.Math.Abs(a))*RobotMap.gearIntakeSpeedConstant);
 		}
 
 		public void climb(double a){

@@ -22,13 +22,14 @@ namespace FRC2017c{
 			operatingButtonGearIntakeIn=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeIn);
 			operatingButtonGearIntakeOut=new JoystickButton(operating,RobotMap.joystickOperatingGearIntakeOut);
 
-			(new JoystickButton(driving,1)).ToggleWhenPressed(new Commands.DrivingStraightCommand(0.36));
-			(new JoystickButton(driving,3)).ToggleWhenPressed(new Commands.DrivingStraightCommand(-0.36));
+			// these are test button for go straight, X - forward, B - backward
+			// (new JoystickButton(driving,1)).ToggleWhenPressed(new Commands.DrivingStraightCommand(0.36));
+			// (new JoystickButton(driving,3)).ToggleWhenPressed(new Commands.DrivingStraightCommand(-0.36));
 
 
-			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(1));
+			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(2));
 			operatingButtonGearUpUp.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
-			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-1));
+			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-2));
 			operatingButtonGearUpDown.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
 			operatingButtonGearIntakeIn.WhenPressed(new Commands.OperatingGearIntakeCommand(1));
 			operatingButtonGearIntakeIn.WhenReleased(new Commands.OperatingGearIntakeCommand(0));

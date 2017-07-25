@@ -16,6 +16,7 @@ namespace FRC2017c{
 		public static readonly CommunicationSubsystem commSys=new CommunicationSubsystem();
 		public static OI oi;
 		public static NetworkTables.NetworkTable nt;
+		public string mode;
 		Command autonomousCommand;
 		WPILib.SmartDashboard.SendableChooser chooser;
 		// CameraServices
@@ -39,10 +40,12 @@ namespace FRC2017c{
 			FRC2017c.gyroSys.resetDisplacement();
 
 			usbCamera=new UsbCamera("USB Camera 0",0);
+			usbCamera.SetFPS(12);
 			camServer.StartAutomaticCapture(usbCamera);
 		}
 		
 		public override void DisabledInit(){
+			mode="disabled";
 		}
 
 		public override void DisabledPeriodic(){

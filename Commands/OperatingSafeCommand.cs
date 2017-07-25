@@ -15,7 +15,7 @@ namespace FRC2017c.Commands{
 		}
 		
 		protected override void Execute(){
-			if(FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorGearUp)>RobotMap.stallMotorGearUpSmall){
+			if(FRC2017c.powerSys.getCurrent(RobotMap.pdpMotorGearUp)>RobotMap.stallMotorGearUp){
 				System.Console.WriteLine("GearUp Motor Current Danger!");
 				FRC2017c.operateSys.holdGearUp=true;
 				if(FRC2017c.operateSys.mdlGearUp<=0){

@@ -24,8 +24,8 @@ namespace FRC2017c{
 		public static int[] pdpMotorOnChassis=new int[]{0,2,12,14};
 
 		/* Stall Current */
-		public static double stallMotorGearUp=4;
-		public static double stallMotorGearUpSmall=2.5;
+		public static double stallMotorGearUp=4.25;
+		public static double stallMotorGearUpSmall=1;
 		public static double stallMotorClimb=30;
 		public static double pdpMotorOnChassisCriticalCurrent=40;/* Unit: Amp */
 
@@ -53,7 +53,7 @@ namespace FRC2017c{
 		public static int joystickOperatingGearIntakeOut=8;
 
 		/* Awesome Autonomous */
-		public static double autonomousAutoGearAngle=28;
+		public static double autonomousAutoGearAngle=30;
 		public static double autonomousAutoGearStraightSpeed=0.5;
 		public static double autonomousAutoGearTurningSpeed=0.3;
 	}

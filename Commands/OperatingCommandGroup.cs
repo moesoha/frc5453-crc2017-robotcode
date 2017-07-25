@@ -12,7 +12,7 @@ namespace FRC2017c.Commands{
 			AddParallel(new Commands.OperatingCommand());
 			AddParallel(new Commands.OperatingGearUpAxisCommand());
 			AddParallel(new Commands.OperatingClimbCommand());
-			AddParallel(new Commands.OperatingSafeCommand());
+			//AddParallel(new Commands.OperatingSafeCommand());
 		}
 	}
 }
