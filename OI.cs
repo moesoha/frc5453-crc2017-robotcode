@@ -27,9 +27,9 @@ namespace FRC2017c{
 			// (new JoystickButton(driving,3)).ToggleWhenPressed(new Commands.DrivingStraightCommand(-0.36));
 
 
-			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(2));
+			operatingButtonGearUpUp.WhenPressed(new Commands.OperatingGearUpButtonCommand(1.6));
 			operatingButtonGearUpUp.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
-			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-2));
+			operatingButtonGearUpDown.WhenPressed(new Commands.OperatingGearUpButtonCommand(-1.6));
 			operatingButtonGearUpDown.WhenReleased(new Commands.OperatingGearUpButtonCommand(0));
 			operatingButtonGearIntakeIn.WhenPressed(new Commands.OperatingGearIntakeCommand(1));
 			operatingButtonGearIntakeIn.WhenReleased(new Commands.OperatingGearIntakeCommand(0));

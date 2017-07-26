@@ -70,12 +70,14 @@ namespace FRC2017c.Commands{
 				case 1:
 					System.Console.WriteLine("Initial Location set to "+((robotLocation==-1)?"LEFT":"RIGHT"));
 					//int test=0;
-					FRC2017c.operateSys.gearUp(-1);
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(900);
+					FRC2017c.operateSys.gearUp(-1);
 					System.Threading.Thread.Sleep(600);
 					//test++;System.Console.WriteLine("orz: "+test.ToString());
 					FRC2017c.driveSys.arcadeDrive(-0.3,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(340);
+					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					FRC2017c.operateSys.gearUp(-1);
 					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
@@ -110,45 +112,33 @@ namespace FRC2017c.Commands{
 					System.Threading.Thread.Sleep(600);
 					FRC2017c.operateSys.gearUp(0);
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.6,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(800);
+					System.Threading.Thread.Sleep(900);
 					FRC2017c.driveSys.arcadeDrive(0.2,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(440);
 					FRC2017c.operateSys.gearIntake(-0.16);
 					System.Threading.Thread.Sleep(6000);
 					FRC2017c.operateSys.gearIntake(0);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					break;
 				case 0:
 					System.Console.WriteLine("Initial Location set to CENTER");
-					
-					//FRC2017c.operateSys.gearUp(-1);
-					//FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
-					//System.Console.WriteLine("Stalled!");
-					//FRC2017c.operateSys.gearUp(0);
-					//FRC2017c.operateSys.gearUp(1);
-					//FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
-					//System.Threading.Thread.Sleep(566);
-					//FRC2017c.operateSys.gearUp(0);
-
-					//System.Threading.Thread.Sleep(1000);
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.7,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(1000);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.82,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(600);
 					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					FRC2017c.operateSys.gearUp(1);
-					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
+					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUpSmall);
 					System.Console.WriteLine("Stalled!");
 					FRC2017c.operateSys.gearUp(-1);
-					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.64,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(800);
+					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed*0.6,0,RobotMap.drivingSquaredInput);
+					System.Threading.Thread.Sleep(1000);
 					FRC2017c.operateSys.gearUp(0);
 					System.Threading.Thread.Sleep(860);
-					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
+					FRC2017c.driveSys.arcadeDrive(0.2,0,RobotMap.drivingSquaredInput);
 					System.Threading.Thread.Sleep(300);
-					FRC2017c.operateSys.gearUp(-1);
-					System.Threading.Thread.Sleep(400);
-					FRC2017c.operateSys.gearUp(0);
-					FRC2017c.operateSys.gearIntake(-0.29);
-					System.Threading.Thread.Sleep(6666);
+					FRC2017c.operateSys.gearIntake(-0.16);
+					System.Threading.Thread.Sleep(6000);
 					FRC2017c.operateSys.gearIntake(0);
+					FRC2017c.driveSys.arcadeDrive(0,0,RobotMap.drivingSquaredInput);
 					break;
 			}
 		}

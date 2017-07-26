@@ -53,7 +53,7 @@ namespace FRC2017c{
 		public static int joystickOperatingGearIntakeOut=8;
 
 		/* Awesome Autonomous */
-		public static double autonomousAutoGearAngle=30;
+		public static double autonomousAutoGearAngle=50;
 		public static double autonomousAutoGearStraightSpeed=0.5;
 		public static double autonomousAutoGearTurningSpeed=0.3;
 	}
