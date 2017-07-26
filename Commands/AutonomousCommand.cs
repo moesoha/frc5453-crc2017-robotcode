@@ -107,6 +107,10 @@ namespace FRC2017c.Commands{
 					}
 					await amazingAutoTurn(System.Math.Abs(angle),0.57*((nt.GetString("turn","null")=="right") ? 1 : -1),1);
 
+					double CCTVisTakingVideoForNews=FRC2017c.gyroSys.getAngle();
+					bool helloHowAreYou=true;
+					/* still taking... */
+
 					System.Threading.Thread.Sleep(180);
 					FRC2017c.operateSys.gearUp(1);
 					System.Threading.Thread.Sleep(600);
