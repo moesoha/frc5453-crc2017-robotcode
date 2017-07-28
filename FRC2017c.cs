@@ -37,6 +37,7 @@ namespace FRC2017c{
 			chooser.AddObject("turn Left",new AutonomousCommand("right"));
 			WPILib.SmartDashboard.SmartDashboard.PutData("Autonomous Mode",chooser);
 			WPILib.SmartDashboard.SmartDashboard.PutString("Team","5453");
+			WPILib.SmartDashboard.SmartDashboard.PutNumber("AutonomousRushing1Delay",900);
 			FRC2017c.gyroSys.resetDisplacement();
 
 			usbCamera=new UsbCamera("USB Camera 0",0);

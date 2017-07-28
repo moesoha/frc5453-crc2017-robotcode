@@ -74,7 +74,8 @@ namespace FRC2017c.Commands{
 					FRC2017c.operateSys.gearIntake(0.3);
 					//int test=0;
 					FRC2017c.driveSys.arcadeDrive(RobotMap.autonomousAutoGearStraightSpeed,0,RobotMap.drivingSquaredInput);
-					System.Threading.Thread.Sleep(1000);
+					int autonomousRushing1Delay=System.Convert.ToInt32(WPILib.SmartDashboard.SmartDashboard.GetNumber("AutonomousRushing1Delay",900));
+					System.Threading.Thread.Sleep(autonomousRushing1Delay);
 					FRC2017c.operateSys.gearUp(-1);
 					System.Threading.Thread.Sleep(600);
 					//test++;System.Console.WriteLine("orz: "+test.ToString());
@@ -86,7 +87,7 @@ namespace FRC2017c.Commands{
 					nt.PutString("turn","null");
 					nt.PutNumber("angle",0.0);
 					
-					await amazingAutoTurn(RobotMap.autonomousAutoGearAngle,-robotLocation*0.57,1);
+					await amazingAutoTurn(RobotMap.autonomousAutoGearAngle,-robotLocation,1);
 					FRC2017c.operateSys.gearUp(-1);
 					FRC2017c.powerSys.stallDetectionDelay(RobotMap.pdpMotorGearUp,RobotMap.stallMotorGearUp);
 					System.Console.WriteLine("Stalled!");
@@ -102,10 +103,10 @@ namespace FRC2017c.Commands{
 					System.Threading.Thread.Sleep(500);
 					*/
 			
-					System.Threading.Thread.Sleep(800);
+					System.Threading.Thread.Sleep(1080);
 					angle=nt.GetNumber("angle",0.0);
-					if(System.Math.Abs(angle)<0.2){
-						System.Threading.Thread.Sleep(400);
+					if(System.Math.Abs(angle)<0.1){
+						System.Threading.Thread.Sleep(300);
 						angle=nt.GetNumber("angle",0.0);
 					}
 					await amazingAutoTurn(System.Math.Abs(angle),0.57*((nt.GetString("turn","null")=="right") ? 1 : -1),1);
