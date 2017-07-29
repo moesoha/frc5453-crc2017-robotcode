@@ -38,7 +38,7 @@ namespace FRC2017c.Commands{
 				double angleInit=FRC2017c.gyroSys.getAngle();
 				double speed=RobotMap.autonomousAutoGearTurningSpeed;
 				double delta=(FRC2017c.gyroSys.getAngle()-angleInit);
-				while((System.Math.Abs(System.Math.Abs(dest)-System.Math.Abs(delta))>tolerance) && (RobotState.Autonomous)){
+				while(((System.Math.Abs(dest)-System.Math.Abs(delta))>tolerance) && (RobotState.Autonomous)){
 					double FlOr=(((System.Math.Abs(dest)-System.Math.Abs(delta))>0)?1:-1)*lOr;
 					FRC2017c.driveSys.drivingMotorsControlRaw("turn",RobotMap.autonomousAutoGearTurningSpeed*0.7*FlOr);
 
